@@ -1,0 +1,46 @@
+<div id="site-header">
+  <header id="header" class="header-block-top">
+    <div class="container">
+      <div class="row">
+        <div class="main-menu">
+          <!-- navbar -->
+          <nav class="navbar navbar-default" id="mainNav">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <div class="logo">
+                <a class="navbar-brand js-scroll-trigger logo-header" href="#">
+                  <img src="./assets/images/logoResize.png" style="height: 42px;" alt="">
+                </a>
+              </div>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li routerLinkActive="active"><a [routerLink]="['/home']">หน้าแรก</a></li>
+                <li><a href="#about">เกี่ยวกับเรา</a></li>
+                <li routerLinkActive="active"><a href="#menu">เมนู</a></li>
+                <li><a href="#our_team">โปรโมชั่น</a></li>
+                <li><a>ติดต่อเรา</a></li>
+                <li *ngIf="login" routerLinkActive="active" ><a [routerLink]="['/orders']">คำสั่งซื้อของฉัน</a></li>
+                <li *ngIf="!login" routerLinkActive="active"><a [routerLink]="['/login']">เข้าสู่ระบบ</a></li>
+                <li *ngIf="!login" routerLinkActive="active"><a [routerLink]="['/register']">สมัครสมาชิก</a></li>
+                <li *ngIf="login" routerLinkActive="active"><a [routerLink]="['/cart']" (click)="onLogout()" tooltip="ออกจากระบบ" placement="top">{{ name }}</a></li>
+                <li *ngIf="login" routerLinkActive="active"><a [routerLink]="['/cart']" tooltip="ดูตะกร้าสินค้า" placement="top"><i class="fas fa-shopping-cart"></i>({{ cart }})</a></li>
+              </ul>
+            </div>
+            <!-- end nav-collapse -->
+          </nav>
+          <!-- end navbar -->
+        </div>
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container-fluid -->
+  </header>
+  <!-- end header -->
+</div>

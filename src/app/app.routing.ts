@@ -1,10 +1,28 @@
 import { Routes, RouterModule } from '@angular/router'
 import { AppURL } from './app.url'
 import { HomeComponent } from './home/home.component';
+import { OrdersComponent } from './orders/orders.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ProductComponent } from './product/product.component';
+import { RegisterComponent } from './register/register.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { SigninComponent } from './signin/signin.component';
+import { SuccessComponent } from './success/success.component';
 
 const RouterLists: Routes = [
     { path:'', redirectTo: AppURL.Home,pathMatch:'full' },
     { path:AppURL.Home, component: HomeComponent },
+    { path:AppURL.Signin, component: SigninComponent },
+    { path:AppURL.Register, component: RegisterComponent },
+    { path:AppURL.Product, component:ProductComponent },
+    { path:AppURL.ShoppingCart, component:ShoppingCartComponent },
+    { path:AppURL.Success, component:SuccessComponent },
+    { path:AppURL.Payment, component:PaymentComponent },
+    { path:AppURL.Orders, component:OrdersComponent },
+    {
+        path:AppURL.ProductDetail, component:ProductDetailComponent
+    }
     // { path:AppURL.Authen,loadChildren:()=> AuthenticationModule,canActivate:[AuthenticationGuard] }
 ]
 

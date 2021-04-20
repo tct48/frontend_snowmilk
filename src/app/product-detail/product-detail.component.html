@@ -1,0 +1,201 @@
+<app-auth-content>
+    <!-- ส่วน Banner -->
+    <div id="register" class="full-screen-mode parallax pad-top-100 pad-bottom-100"
+        style="background-color: rgba(0, 0, 0, 0.9);">
+        <div class="container pr">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="banner-static">
+                    <div class="banner-text">
+                        <div class="banner-cell">
+                            <h1 style="font-weight: bold;">Snowmilk Gelato</h1>
+                            <h2 style="font-weight: bold;">{{ name }}</h2>
+                        </div>
+                        <!-- end banner-cell -->
+                    </div>
+                    <!-- end banner-text -->
+                </div>
+                <!-- end banner-static -->
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end container -->
+    </div>
+
+
+    <div  #target  style="margin:40px 0px;" class="pad-bottom-100">
+        <div class="container">
+            <ul class="breadcrumb" style="border-radius: 0px;background:#ebebeb;color:#808080;">
+                <li><i class="fas fa-home"></i></li>
+                <li><a routerLink="/product">ไอศกรีม</a></li>
+                <li>{{ category }}</li>
+                <li class="active">{{ name }}</li>
+            </ul>
+
+            <p class="text-right">
+                <i class="fas fa-shopping-cart"></i>
+                {{ cart }} รายการ
+            </p>
+            <!-- Product-detail -->
+            <div class="row">
+                <!-- Column Left -->
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn box-product-detail" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <img src="{{ image }}" alt="">
+                    </div>
+                </div>
+
+                <!-- Column Right -->
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn box-product-detail" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h3 class="bold" style="font-size: 30pt;margin-bottom: 12px;">{{ name }}</h3>
+                        <p>
+                            อร่อยดับร้อนไปกับไอศกรีมรส {{ name }} ท็อปด้วยเม็ดมะม่วง และพุดดิ้งข้าวเหนียวดำ
+                            อร่อยละมุนทุกคำ รับประกันความฟิน
+                        </p>
+                        <h3 class="bold" style="margin-top: 30px;margin-bottom: 10px;">รายละเอียดสินค้า</h3>
+                        <ul style="margin-bottom:30px;">
+                            <li>
+                                <p><i class="fas fa-check-circle" style="margin:0px 10px;color:#fdcb03;"></i>ไอศกรีม
+                                    Homemade </p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-check-circle" style="margin:0px 10px;color:#fdcb03;"></i>รสชาติ {{ taste }}</p>
+                            </li>
+                        </ul>
+                        <p class="tag-price" style="margin-bottom: 30px;">
+                            {{ price | currency:'THB':'symbol-narrow':'1.2-2' }}
+                        </p>
+                        <button (click)="addOnCart(_id)" class="btn btn-warning"
+                            style="background: #fdcb03;border:0px;padding:10px 24px;margin-bottom: 10px;">
+                            <i class="fas fa-shopping-cart"></i>
+                            เพิ่มใส่ตะกร้า
+                        </button>
+                        <br>
+                        <div class="btn-group">
+                            <button class="btn">
+                                <i class="fab fa-facebook-square"></i>
+                            </button>
+                            <button class="btn">
+                                <i class="fab fa-facebook-messenger"></i>
+                            </button>
+                            <button class="btn">
+                                <i class="fab fa-line"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="bold" style="margin:40px 0px 0px 0px;">
+                สินค้าอื่น ๆ ที่น่าสนใจ
+            </h3>
+            <!-- Other Product -->
+            <div class="row">
+                <div *ngFor="let data of rand_product.items;" class="col-md-3">
+                    <div (click)="changeProduct(data._id,target)" class="card shadow33" tooltip="ดูสินค้า" placement="bottom">
+                        <img src="{{ data.image }}" alt="" style="width: 100%;object-fit: cover;">
+                        <div class="card-body">
+                            <h3 class="bold">{{ data.name }}</h3>
+                            <p class="p-0 m-0">{{ data.taste }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+
+    <div id="footer" class="footer-main">
+        <!-- end footer-news -->
+        <div class="footer-box pad-top-70">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-in-main">
+                        <div class="footer-logo">
+                            <div class="text-center">
+                                <img src="./assets/images/logo.png" style="height: 64px;" alt="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-a">
+                                <h3>เกี่ยวกับเรา</h3>
+                                <p>Snowmilk Gelato ไอศกรีมโฮมเมดระดับพรีเมียม รสชาติเข้มข้นถูกปากคนไทย</p>
+                                <ul class="socials-box footer-socials pull-left">
+                                    <li>
+                                        <a href="#">
+                                            <div class="social-circle-border"><i class="fa  fa-facebook"></i></div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <!-- end footer-box-a -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-b">
+                                <h3>สินค้าใหม่</h3>
+                                <ul>
+                                    <li><a href="#">Italian Bomba Sandwich</a></li>
+                                    <li><a href="#">Double Dose of Pork Belly</a></li>
+                                    <li><a href="#">Spicy Thai Noodles</a></li>
+                                    <li><a href="#">Triple Truffle Trotters</a></li>
+                                </ul>
+                            </div>
+                            <!-- end footer-box-b -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-c">
+                                <h3>ติดต่อเรา</h3>
+                                <p>
+                                    <i class="fa fa-map-signs" aria-hidden="true"></i>
+                                    <span>421 ซอยร่วมสุข 4/18 ตำบล บ้านใหม่ อำเภอเมืองปทุมธานี ปทุมธานี 12000</span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    <span>
+                                        094-442-8897
+                                    </span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span><a href="#">snowmilkgelato@gmail.com</a></span>
+                                </p>
+                            </div>
+                            <!-- end footer-box-c -->
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-c">
+                                <h3>รสชาติไอศกรีม</h3>
+                                <h4 style="color:white">ที่ได้ชิมคำแรกก็ติดใจ</h4>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end footer-in-main -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+
+                <!-- end copyright-main -->
+            </div>
+            <!-- end footer-box -->
+            <div id="copyright" class="copyright-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h6 class="copy-title"> Copyright &copy; 2017 Food Funday is powered by <a href="#"
+                                    target="_blank"></a>
+                            </h6>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+            </div>
+        </div>
+    </div>
+
+</app-auth-content>

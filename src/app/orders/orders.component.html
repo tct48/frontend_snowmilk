@@ -1,0 +1,248 @@
+<app-auth-content>
+    <!-- ส่วน Banner -->
+    <div id="xxx" class="full-screen-mode parallax pad-top-100 pad-bottom-100"
+        style="background-color: rgba(0, 0, 0, 0.9);">
+        <div class="container pr">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="banner-static">
+                    <div class="banner-text">
+                        <div class="banner-cell">
+                            <h1 style="font-weight: bold;">Snowmilk Gelato</h1>
+                            <h2 style="font-weight: bold;">Online store</h2>
+                        </div>
+                        <!-- end banner-cell -->
+                    </div>
+                    <!-- end banner-text -->
+                </div>
+                <!-- end banner-static -->
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end container -->
+    </div>
+
+
+    <div style="margin:40px 0px;" class="pad-bottom-100">
+        <div class="container">
+            <ul class="breadcrumb" style="border-radius: 0px;background:#ebebeb;color:#808080;">
+                <li class="breadcrumb-item"><i class="fas fa-home"></i></li>
+                <li class="breadcrumb-item">ตะกร้าสินค้า</li>
+            </ul>
+            <div class="row">
+                <!-- Column Left -->
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn box-category" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h3 style="font-weight: bold;">ประเภทสินค้า</h3>
+                        <ul>
+                            <li>
+                                <a href="">
+                                    Snowwhite
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    คนแคระ
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div style="margin-top: 30px;">
+                            <h3 style="font-weight: bold;">
+                                โปรโมชั่นสุดพิเศษ
+                            </h3>
+                            <img src="http://html.lionode.com/focus/image/banners/LeftBanner.jpg?fbclid=IwAR3xa7eRqCsPDTiJeBhyYLuEDXU4KZIdP1sqsdWSc3eE277L6XRLtqKqQTE"
+                                class="img-thumbnail">
+                            <img src="https://img.his.in.th/cdn-cgi/image/format=auto/his/image/upload/w_640,h_853,c_fill,f_jpg/his/product/p6gLs2NmBtGG0aJNpUaRx0W6Dx0cIqQY/PH804808-a2.jpg"
+                                class="img-thumbnail">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Column Right -->
+                <div class="col-md-9 col-sm-12 col-xs-12">
+                    <!-- ส่วนรายละเอียดธนาคาร -->
+                    <div>
+                        <h4 class="bold">
+                            รายการคำสั่งซื้อของฉัน
+                        </h4>
+                        <table class="table table-orders">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        ลำดับ
+                                    </th>
+                                    <th>
+                                        รายการสั่งซื้อ
+                                    </th>
+                                    <th>
+                                        รายละเอียด    
+                                    </th>
+                                    <th>
+                                        ราคา
+                                    </th>
+                                    <th>
+                                        สถานะ
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td class="bold">
+                                        <u>#84646</u>
+                                    </td>
+                                    <td>
+                                        <p>1 ชั่วโมงที่ผ่านมา</p>
+                                        <p class="small" style="color:rgb(148, 148, 148)">
+                                            19 เม.ย. 2564 19:29 น.
+                                        </p>
+                                    </td>
+                                    <td>
+                                        ฿270.00
+                                    </td>
+                                    <td class="text-success bold">
+                                        รอชำระเงิน
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info"  [routerLink]="['/success']" tooltip="ดูรายละเอียด">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        2
+                                    </td>
+                                    <td class="bold">
+                                       <u>#79583</u>
+                                    </td>
+                                    <td>
+                                        <p>1 เดือนที่ผ่านมา</p>
+                                        <p class="small" style="color:rgb(148, 148, 148)">
+                                            19 เม.ย. 2564 19:29 น.
+                                        </p>
+                                    </td>
+                                    <td>
+                                        100.00
+                                    </td>
+                                    <td class="text-info bold">
+                                        จัดส่งแล้ว
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info" [routerLink]="['/success']" tooltip="ดูรายละเอียด">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="margin-top:30px;">
+                            แสดงรายการ 1-2 จากทั้งหมด 2 รายการ
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+
+    <div id="footer" class="footer-main">
+        <!-- end footer-news -->
+        <div class="footer-box pad-top-70">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-in-main">
+                        <div class="footer-logo">
+                            <div class="text-center">
+                                <img src="./assets/images/logo.png" style="height: 64px;" alt="" />
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-a">
+                                <h3>เกี่ยวกับเรา</h3>
+                                <p>Snowmilk Gelato ไอศกรีมโฮมเมดระดับพรีเมียม รสชาติเข้มข้นถูกปากคนไทย</p>
+                                <ul class="socials-box footer-socials pull-left">
+                                    <li>
+                                        <a href="#">
+                                            <div class="social-circle-border"><i class="fa  fa-facebook"></i></div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <!-- end footer-box-a -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-b">
+                                <h3>สินค้าใหม่</h3>
+                                <ul>
+                                    <li><a href="#">Italian Bomba Sandwich</a></li>
+                                    <li><a href="#">Double Dose of Pork Belly</a></li>
+                                    <li><a href="#">Spicy Thai Noodles</a></li>
+                                    <li><a href="#">Triple Truffle Trotters</a></li>
+                                </ul>
+                            </div>
+                            <!-- end footer-box-b -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-c">
+                                <h3>ติดต่อเรา</h3>
+                                <p>
+                                    <i class="fa fa-map-signs" aria-hidden="true"></i>
+                                    <span>421 ซอยร่วมสุข 4/18 ตำบล บ้านใหม่ อำเภอเมืองปทุมธานี ปทุมธานี 12000</span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    <span>
+                                        094-442-8897
+                                    </span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span><a href="#">snowmilkgelato@gmail.com</a></span>
+                                </p>
+                            </div>
+                            <!-- end footer-box-c -->
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-c">
+                                <h3>รสชาติไอศกรีม</h3>
+                                <h4 style="color:white">ที่ได้ชิมคำแรกก็ติดใจ</h4>
+                            </div>
+                            <!-- end col -->
+                        </div>
+                        <!-- end footer-in-main -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+
+                <!-- end copyright-main -->
+            </div>
+            <!-- end footer-box -->
+            <div id="copyright" class="copyright-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h6 class="copy-title"> Copyright &copy; 2017 Food Funday is powered by <a href="#"
+                                    target="_blank"></a>
+                            </h6>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+            </div>
+        </div>
+    </div>
+
+</app-auth-content>
