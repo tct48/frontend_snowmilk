@@ -1,5 +1,6 @@
 import { Routes, RouterModule } from '@angular/router'
 import { AppURL } from './app.url'
+import { AuthenticationGuard } from './guard/authentication.guard';
 import { HomeComponent } from './home/home.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PaymentComponent } from './payment/payment.component';
@@ -16,10 +17,10 @@ const RouterLists: Routes = [
     { path:AppURL.Signin, component: SigninComponent },
     { path:AppURL.Register, component: RegisterComponent },
     { path:AppURL.Product, component:ProductComponent },
-    { path:AppURL.ShoppingCart, component:ShoppingCartComponent },
-    { path:AppURL.Success, component:SuccessComponent },
-    { path:AppURL.Payment, component:PaymentComponent },
-    { path:AppURL.Orders, component:OrdersComponent },
+    { path:AppURL.ShoppingCart, component:ShoppingCartComponent,canActivate:[AuthenticationGuard] },
+    { path:AppURL.Success, component:SuccessComponent,canActivate:[AuthenticationGuard] },
+    { path:AppURL.Payment, component:PaymentComponent,canActivate:[AuthenticationGuard] },
+    { path:AppURL.Orders, component:OrdersComponent,canActivate:[AuthenticationGuard] },
     {
         path:AppURL.ProductDetail, component:ProductDetailComponent
     }

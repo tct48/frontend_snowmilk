@@ -25,6 +25,10 @@ export class ProductDetailComponent implements OnInit {
         this.router.navigateByUrl("/home");
         return;
       }
+      this.loadRandomProduct();
+
+      this.product.updateView(this._id).then(result=>{
+      });
 
       this.getCart();
 
@@ -39,7 +43,7 @@ export class ProductDetailComponent implements OnInit {
       })
 
       this.cart = localStorage.getItem("cart");
-      this.loadRandomProduct();
+      this.userid = localStorage.getItem("login");
     })
   }
 
@@ -53,6 +57,8 @@ export class ProductDetailComponent implements OnInit {
   taste: string;
   cart: string;
 
+  userid:string;
+
   rand_product: any = {
     items: [],
     total_item: 0
@@ -62,8 +68,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   loadRandomProduct() {
-    this.product.loadRandomProduct().then(result => {
+    this.product.loadRandomProduct(this._id).then(result => {
       this.rand_product = result;
+      console.log(result)
     })
   }
 

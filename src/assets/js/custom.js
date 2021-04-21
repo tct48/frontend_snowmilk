@@ -203,8 +203,8 @@
 		});	
 		
 		jQuery(".orange-bg").on('click',function(){
-			jQuery(".logo-header img").attr("src", "images/logo.png");
-			jQuery(".footer-logo .text-center img").attr("src", "images/logo.png");
+			jQuery(".logo-header img").attr("src", "images/logo (1) (1).png");
+			jQuery(".footer-logo .text-center img").attr("src", "images/logo (1) (1).png");
 			return false;
 		});
 

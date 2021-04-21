@@ -31,7 +31,6 @@ export class AuthNavBarComponent implements OnInit {
 
   checkLogin(){
     if(localStorage.getItem("login")){
-      console.log(localStorage.getItem("login"));
       this.login = true;
       this.name = localStorage.getItem("name");
       this.cart = this.authen.getNumCart();

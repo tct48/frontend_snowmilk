@@ -68,10 +68,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "snow-milk:build",
-            "headers":{
-              "Content-Type": "text/html; charset=UTF-8"
-            }
+            "browserTarget": "snow-milk:build"
           },
           "configurations": {
             "production": {

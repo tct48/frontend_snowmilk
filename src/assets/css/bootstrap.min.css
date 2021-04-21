@@ -3881,9 +3881,6 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 .navbar-default .navbar-toggle .icon-bar{
     background-color:#888
 }
-.navbar-default .navbar-collapse,.navbar-default .navbar-form{
-    /*border-color:#e7e7e7*/
-}
 .navbar-default .navbar-nav>.open>a,.navbar-default .navbar-nav>.open>a:hover,.navbar-default .navbar-nav>.open>a:focus{
     background-color:#e7e7e7;
     color:#555

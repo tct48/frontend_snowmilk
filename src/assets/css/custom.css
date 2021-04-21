@@ -198,15 +198,15 @@ img.product-best-seller:hover{
     padding:12px 8px;
 }
 
-.card{
+.card-rand{
     opacity:0.4;
 }
 
-.card:hover{
+.card-rand:hover{
     cursor:pointer;
 }
 
-.card:hover{
+.card-rand:hover{
     opacity:1;
     transition: opacity 0.35s ease-in-out;
 }

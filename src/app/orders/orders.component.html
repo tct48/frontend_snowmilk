@@ -34,14 +34,9 @@
                     <div class="wow fadeIn box-category" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h3 style="font-weight: bold;">ประเภทสินค้า</h3>
                         <ul>
-                            <li>
-                                <a href="">
-                                    Snowwhite
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    คนแคระ
+                            <li *ngFor="let data of c.items;let i=index;">
+                                <a [routerLink]="['/product']" [queryParams]="{category:data._id}">
+                                    {{ data.name }}
                                 </a>
                             </li>
                         </ul>
@@ -75,7 +70,7 @@
                                         รายการสั่งซื้อ
                                     </th>
                                     <th>
-                                        รายละเอียด    
+                                        รายละเอียด
                                     </th>
                                     <th>
                                         ราคา
@@ -89,52 +84,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let data of o.items;let i = index;">
                                     <td>
-                                        1
+                                        {{ i+1 }}
                                     </td>
                                     <td class="bold">
-                                        <u>#84646</u>
+                                        <u>#00{{ data._id }}</u>
                                     </td>
                                     <td>
-                                        <p>1 ชั่วโมงที่ผ่านมา</p>
+                                        <p>{{ data.dor | dateAgo }}</p>
                                         <p class="small" style="color:rgb(148, 148, 148)">
-                                            19 เม.ย. 2564 19:29 น.
+                                            {{ data.dor | date:'dd MMMM yyyy' }}
                                         </p>
                                     </td>
                                     <td>
-                                        ฿270.00
+                                        {{ data.total | currency:'THB':'symbol-narrow':'1.2-2' }}
                                     </td>
-                                    <td class="text-success bold">
-                                        รอชำระเงิน
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-info"  [routerLink]="['/success']" tooltip="ดูรายละเอียด">
-                                            <i class="fas fa-eye"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        2
-                                    </td>
-                                    <td class="bold">
-                                       <u>#79583</u>
+                                    <td class="text-success bold">    
+                                        {{ data.status==0?'ยังไม่ชำระเงิน':data.status==1?'รอการตรวจสอบ':'จัดส่งแล้ว' }}
                                     </td>
                                     <td>
-                                        <p>1 เดือนที่ผ่านมา</p>
-                                        <p class="small" style="color:rgb(148, 148, 148)">
-                                            19 เม.ย. 2564 19:29 น.
-                                        </p>
-                                    </td>
-                                    <td>
-                                        100.00
-                                    </td>
-                                    <td class="text-info bold">
-                                        จัดส่งแล้ว
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-info" [routerLink]="['/success']" tooltip="ดูรายละเอียด">
+                                        <button class="btn btn-info" (click)="goToSuccess(data._id)" tooltip="ดูรายละเอียด">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </td>
@@ -161,7 +131,7 @@
                     <div class="footer-in-main">
                         <div class="footer-logo">
                             <div class="text-center">
-                                <img src="./assets/images/logo.png" style="height: 64px;" alt="" />
+                                <img src="./assets/images/logo (1) (1).png" style="height: 64px;" alt="" />
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">

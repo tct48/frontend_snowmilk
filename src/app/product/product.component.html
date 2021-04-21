@@ -36,7 +36,8 @@
                         <h3 style="font-weight: bold;">ประเภทสินค้า</h3>
                         <ul>
                             <li *ngFor="let data of c.items;let i=index;">
-                                <a href="" class="{{ i==0?'active':'' }}">
+                                <a [routerLink]="['/product']" [queryParams]="{category:data._id}"
+                                    class="{{ option.category==data._id?'active':'' }}">
                                     {{ data.name }}
                                 </a>
                             </li>
@@ -57,11 +58,12 @@
                 <!-- Column Right -->
                 <div class="col-md-9 col-sm-12 col-xs-12">
                     <div class="box-product wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-                        <h3 class="bold">Snowwhite</h3>
+                        <h3 class="bold">Snowmilk Gelato</h3>
                         <p>
-                            "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus nam quod libero debitis,
-                            saepe in, quo doloremque ad enim quisquam mollitia ab eveniet impedit repellat animi fugit.
-                            Nostrum, optio atque!."
+                            My girl, my girl, don't lie to me Tell me where did you sleep last night In the pines, in
+                            the pines Where the sun don't ever shine I would shiver the whole night through My girl, my
+                            girl, where will you go I'm going where the cold wind blows In the pines, in the pines Where
+                            the sun don't ever shine I would shiver the whole night through.
                         </p>
                         <p class="text-right">
                             <i class="fas fa-shopping-cart"></i>
@@ -70,8 +72,7 @@
                         <hr>
                         <div class="row">
                             <div *ngFor="let data of p.items;let i = index;" class="col-md-3 mb-2 secondary">
-                                <img src="{{ data.image }}"
-                                    alt="">
+                                <img src="{{ data.image }}" class="wifi" alt="">
                                 <div class="middle">
                                     <a (click)="goToProductDetailOf(data._id)" class="text">
                                         <i class="fas fa-shopping-cart"></i>
@@ -83,7 +84,8 @@
                             </div>
                         </div>
                         <div class="text-center" style="margin-top: 20px;">
-                            <button *ngIf="p.items.length<p.total_items" class="btn btn-warning hvr-underline-from-center" type="submit">
+                            <button *ngIf="p.items.length<p.total_items"
+                                class="btn btn-warning hvr-underline-from-center" (click)="onLoadMore()">
                                 โหลดข้อมูลเพิ่มเติม
                             </button>
                         </div>
@@ -103,7 +105,7 @@
                     <div class="footer-in-main">
                         <div class="footer-logo">
                             <div class="text-center">
-                                <img src="./assets/images/logo.png" style="height: 64px;" alt="" />
+                                <img src="./assets/images/logo (1) (1).png" style="height: 64px;" alt="" />
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">

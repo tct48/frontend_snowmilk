@@ -25,6 +25,15 @@ export class AlertService {
       icon:'error',
       title:title,
       showConfirmButton:false,
+      timerProgressBar:true,
+      timer:1500
+    })
+  }
+
+  waiting(){
+    Swal.fire({
+      showConfirmButton: false,
+      timer:2000,
       timerProgressBar:true
     })
   }

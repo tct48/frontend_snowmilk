@@ -65,10 +65,15 @@
                         <p class="tag-price" style="margin-bottom: 30px;">
                             {{ price | currency:'THB':'symbol-narrow':'1.2-2' }}
                         </p>
-                        <button (click)="addOnCart(_id)" class="btn btn-warning"
+                        <button *ngIf="userid" (click)="addOnCart(_id)" class="btn btn-warning"
                             style="background: #fdcb03;border:0px;padding:10px 24px;margin-bottom: 10px;">
                             <i class="fas fa-shopping-cart"></i>
                             เพิ่มใส่ตะกร้า
+                        </button>
+                        <button *ngIf="!userid" [routerLink]="['/login']" class="btn btn-warning"
+                            style="background: #2b2304;border:0px;padding:10px 24px;margin-bottom: 10px;">
+                            <i class="fas fa-lock"></i>&nbsp;
+                            กรุณาเข้าสู่ระบบก่อน
                         </button>
                         <br>
                         <div class="btn-group">
@@ -92,7 +97,7 @@
             <!-- Other Product -->
             <div class="row">
                 <div *ngFor="let data of rand_product.items;" class="col-md-3">
-                    <div (click)="changeProduct(data._id,target)" class="card shadow33" tooltip="ดูสินค้า" placement="bottom">
+                    <div (click)="changeProduct(data._id,target)" class="card-rand shadow33" tooltip="ดูสินค้า" placement="bottom">
                         <img src="{{ data.image }}" alt="" style="width: 100%;object-fit: cover;">
                         <div class="card-body">
                             <h3 class="bold">{{ data.name }}</h3>
@@ -114,7 +119,7 @@
                     <div class="footer-in-main">
                         <div class="footer-logo">
                             <div class="text-center">
-                                <img src="./assets/images/logo.png" style="height: 64px;" alt="" />
+                                <img src="./assets/images/logo (1) (1).png" style="height: 64px;" alt="" />
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">

@@ -15,17 +15,17 @@
               </button>
               <div class="logo">
                 <a class="navbar-brand js-scroll-trigger logo-header" href="#">
-                  <img src="./assets/images/logoResize.png" style="height: 42px;" alt="">
+                  <img src="./assets/images/logo (1) (1).png" style="height: 43px;" alt="">
                 </a>
               </div>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
                 <li routerLinkActive="active"><a [routerLink]="['/home']">หน้าแรก</a></li>
-                <li><a href="#about">เกี่ยวกับเรา</a></li>
-                <li routerLinkActive="active"><a href="#menu">เมนู</a></li>
-                <li><a href="#our_team">โปรโมชั่น</a></li>
-                <li><a>ติดต่อเรา</a></li>
+                <li><a [routerLink]="['/home']">เกี่ยวกับเรา</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['/product']">เมนู</a></li>
+                <li><a [routerLink]="['/home']">โปรโมชั่น</a></li>
+                <li><a [routerLink]="['/home']">ติดต่อเรา</a></li>
                 <li *ngIf="login" routerLinkActive="active" ><a [routerLink]="['/orders']">คำสั่งซื้อของฉัน</a></li>
                 <li *ngIf="!login" routerLinkActive="active"><a [routerLink]="['/login']">เข้าสู่ระบบ</a></li>
                 <li *ngIf="!login" routerLinkActive="active"><a [routerLink]="['/register']">สมัครสมาชิก</a></li>

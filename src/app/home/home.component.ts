@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
   loadProductTop(){
     this.product.loadTopSix().then(result=>{
       this.top_product = result;
-      console.log(result);
     })
   }
 
@@ -46,7 +45,6 @@ export class HomeComponent implements OnInit {
   loadBestSell(){
     this.product.loadBestSeller().then(result=>{
       this.best_seller=result;
-        console.log(result);
     })
   }
 

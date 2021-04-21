@@ -24,7 +24,7 @@ export class AuthenService {
 
 
   getAuthenticated():string{
-    return localStorage.getItem("name");
+    return localStorage.getItem("login");
   }
 
   clearAuthenticated():void{

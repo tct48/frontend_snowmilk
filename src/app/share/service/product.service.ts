@@ -27,6 +27,8 @@ export class ProductService {
 
   loadAllProduct(option: IOption) {
     let url = `product/_get.php?sp=${option.sp}&lp=${option.lp}`;
+    if(option.category)
+    url = `product/_get.php?sp=${option.sp}&lp=${option.lp}&category=${option.category}`;
     return this.http.requestGet(url, this.authen.getAuthenticated())
       .toPromise() as Promise<any>
   }
@@ -37,10 +39,24 @@ export class ProductService {
       .toPromise() as Promise<any>
   }
 
-  loadRandomProduct() {
-    let url = `product/_get_random_four.php`;
+  loadRandomProduct(_id:string) {
+    let url = `product/_get_random_four.php?_id=${_id}`;
+    console.log(url)
     return this.http.requestGet(url, this.authen.getAuthenticated())
       .toPromise() as Promise<any>
+  }
+
+  // อัพเดทผู้เยี่ยมชม
+  updateView(_id:string){
+    let url = `product/_put_view.php`;
+    return this.http.requestPut(url,this.authen.getAuthenticated(),{_id:_id})
+      .toPromise() as Promise<any>
+  }
+
+  loadCart(_id:string){
+    let url =`cart/_get.php?user=${_id}`;
+    return this.http.requestGet(url, this.authen.getAuthenticated())
+      .toPromise() as Promise<any>;
   }
 
   countCart(_id: string) {
@@ -58,7 +74,8 @@ export class ProductService {
 
 export interface IOption {
   sp: number,
-  lp: number
+  lp: number,
+  category?:number
 }
 
 export interface IAddCart {

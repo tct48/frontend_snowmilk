@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppURL } from '../app.url';
+import { AlertService } from '../share/alert.service';
+import { CategoryService } from '../share/service/category.service';
+import { OrderService } from '../share/service/order.service';
 
 @Component({
   selector: 'app-success',
@@ -7,11 +12,55 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuccessComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private category: CategoryService,
+    private alert: AlertService,
+    private order: OrderService,
+    private activateRouter: ActivatedRoute,
+    private router:Router
+  ) {
     window.scrollTo(0, 0)
+    this.activateRouter.queryParams.forEach(params => {
+      if(!params._id){
+        this.alert.notify();
+        return;
+      }
+      
+      this._id=params._id;
+      this.loadOrder();
+
+      this.loadCategory();
+    })
+  }
+
+  _id:string;
+  o:any;
+
+  c:any={
+    items:[],
+    total_items:0
   }
 
   ngOnInit(): void {
+  }
+
+  loadOrder(){
+    this.order.loadOrderByID(this._id).then(result=>{
+      this.o = result;
+      console.log(this.o);
+    })
+  }
+
+  loadCategory(){
+    this.category.loadCategory().then(result=>{
+      this.c = result;
+    })
+  }
+
+  goToPayment(){
+    this.router.navigate(['', AppURL.Payment], {
+      queryParams: { _id: this._id }
+    });
   }
 
 }

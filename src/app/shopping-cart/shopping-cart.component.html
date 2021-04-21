@@ -34,14 +34,9 @@
                     <div class="wow fadeIn box-category" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h3 style="font-weight: bold;">ประเภทสินค้า</h3>
                         <ul>
-                            <li>
-                                <a href="">
-                                    Snowwhite
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    คนแคระ
+                            <li *ngFor="let data of c.items;let i=index;">
+                                <a [routerLink]="['/product']" [queryParams]="{category:data._id}">
+                                    {{ data.name }}
                                 </a>
                             </li>
                         </ul>
@@ -74,60 +69,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let data of item.items;let i = index;">
                                     <td>
-                                        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202009/511781/1000235565_front_XXXL.jpg?imgname=BLACK-CLOVER-%E0%B9%80%E0%B8%A5%E0%B9%88%E0%B8%A1-24"
-                                            alt="" style="height: 90px;width: 100%;object-fit: cover;"
-                                            class="thumbnail">
+                                        <img src="{{ data.image }}" alt=""
+                                            style="height: 90px;width: 100%;object-fit: cover;" class="thumbnail">
                                     </td>
-                                    <td>Black Clover</td>
-                                    <td>หนังสือการ์ตูน</td>
+                                    <td>{{ data.name }}</td>
+                                    <td>{{ data.category }}</td>
                                     <td>
                                         <div class="input-group">
-                                            <input type="number" style="border:1px solid black" class="form-control"
-                                                value="1">
+                                            <input type="number" (change)="calculate()" min="1" [(ngModel)]="qty[i]"
+                                                style="border:1px solid black" class="form-control">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default"
                                                     style="background: black;color:white;border:1px solid black"
-                                                    tooltip="นำออก" placment="bottom">
+                                                    tooltip="นำออก" (click)="onRemove(data._id)" placment="right">
                                                     <i class="fas fa-close"></i>
                                                 </button>
                                             </span>
                                         </div>
                                     </td>
                                     <td class="text-right">
-                                        ฿300.00
+                                        {{ data.price | currency:'THB':'symbol-narrow':'1.2-2' }}
                                     </td>
                                     <td class="text-right">
-                                        ฿1,500.00
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202009/511781/1000235565_front_XXXL.jpg?imgname=BLACK-CLOVER-%E0%B9%80%E0%B8%A5%E0%B9%88%E0%B8%A1-24"
-                                            alt="" style="height: 90px;width: 100%;object-fit: cover;"
-                                            class="thumbnail">
-                                    </td>
-                                    <td>Black Clover</td>
-                                    <td>หนังสือการ์ตูน</td>
-                                    <td>
-                                        <div class="input-group">
-                                            <input type="number" style="border:1px solid black" class="form-control"
-                                                value="1">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default"
-                                                    style="background: black;color:white;border:1px solid black"
-                                                    tooltip="นำออก" placment="bottom">
-                                                    <i class="fas fa-close"></i>
-                                                </button>
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td class="text-right">
-                                        ฿300.00
-                                    </td>
-                                    <td class="text-right">
-                                        ฿1,500.00
+                                        {{ data.price*qty[i] | currency:'THB':'symbol-narrow':'1.2-2' }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -164,91 +130,95 @@
                                         <i class="fas fa-caret-down"></i>
                                     </span>
                                 </button>
-                                <p>กรุณากรอกรายละเอียด และที่อยู่ในการจัดส่งสินค้าให้ครบถ้วน เพิ่มความมั่นใจในการส่งสินค้าถึงปลายทาง จากนั้นคลิกปุ่ม</p>
-                                <div class="form-group">
-                                    <label for="">ชื่อผู้รับ</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">ที่อยู่</label>
-                                    <textarea class="form-control" cols="30" rows="3"></textarea>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">ตำบล</label>
-                                            <input type="text" class="form-control">
+                                <p>กรุณากรอกรายละเอียด และที่อยู่ในการจัดส่งสินค้าให้ครบถ้วน
+                                    เพิ่มความมั่นใจในการส่งสินค้าถึงปลายทาง จากนั้นคลิกปุ่ม</p>
+                                <form [formGroup]="form">
+                                    <div class="form-group">
+                                        <label for="">ชื่อผู้รับ</label>
+                                        <input formControlName="name" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">ที่อยู่</label>
+                                        <textarea formControlName="addr" class="form-control" cols="30"
+                                            rows="3"></textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">ตำบล</label>
+                                                <input formControlName="subdis" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">อำเภอ</label>
+                                                <input formControlName="dis" type="text" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">อำเภอ</label>
-                                            <input type="text" class="form-control">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">จังหวัด</label>
+                                                <input formControlName="prov" type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">รหัสไปรษณีย์</label>
+                                                <input formControlName="post" type="text" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">จังหวัด</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="">รหัสไปรษณีย์</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </accordion-group>
                         </accordion>
 
+
                     </div>
+                    <div class="col-md-7">
 
-                </div>
-
-                <div class="col-md-9">
-                    &nbsp;
-                </div>
-                <div class="col-md-3">
-                    <table class="table table-cart">
-                        <tbody>
-                            <tr style="text-align: right;">
-                                <th style="white-space: nowrap;">ยอดรวม:</th>
-                                <td>฿210.00</td>
-                            </tr>
-                            <tr style="text-align: right;">
-                                <th style="white-space: nowrap;">
-                                    ค่าจัดส่ง
-                                </th>
-                                <td>฿150.00</td>
-                            </tr>
-                            <tr style="text-align: right;">
-                                <th style="white-space: nowrap;">
-                                    ส่วนลด
-                                </th>
-                                <td>฿10.00</td>
-                            </tr>
-                            <tr style="text-align: right;">
-                                <th style="white-space: nowrap;">
-                                    รวมทั้งสิ้น
-                                </th>
-                                <td>฿360.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-                    <button class="btn pull-left" style="background: black;color: white;">
-                        <i class="fas fa-caret-left"> </i>
-                        &nbsp;เลือกสินค้าต่อ
-                    </button>
-                    <button class="btn pull-right btn-warning" [routerLink]="['/success']">
-                        <i class="fas fa-check"> </i> 
-                        ยืนยันการสั่งซื้อ
-                    </button>
+                    </div>
+                    <div class="col-md-5">
+                        <table class="table table-cart">
+                            <tbody>
+                                <tr style="text-align: right;">
+                                    <th style="white-space: nowrap;">ยอดรวม:</th>
+                                    <td>
+                                        {{ amount | currency:'THB':'symbol-narrow':'1.2-2' }}
+                                    </td>
+                                </tr>
+                                <tr style="text-align: right;">
+                                    <th style="white-space: nowrap;">
+                                        ค่าจัดส่ง
+                                    </th>
+                                    <td>฿150.00</td>
+                                </tr>
+                                <tr style="text-align: right;">
+                                    <th style="white-space: nowrap;">
+                                        ส่วนลด
+                                    </th>
+                                    <td>฿0.00</td>
+                                </tr>
+                                <tr style="text-align: right;">
+                                    <th style="white-space: nowrap;">
+                                        รวมทั้งสิ้น
+                                    </th>
+                                    <td>{{ amount+150 | currency:'THB':'symbol-narrow':'1.2-2' }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn pull-left" [routerLink]="['/product']" style="background: black;color: white;">
+                            <i class="fas fa-caret-left"> </i>
+                            &nbsp;เลือกสินค้าต่อ
+                        </button>
+                        <button class="btn pull-right btn-warning" (click)="onSubmit()">
+                            <i class="fas fa-check"> </i>
+                            ยืนยันการสั่งซื้อ
+                        </button>
+                    </div>
                 </div>
             </div>
             <!-- end row -->
@@ -264,7 +234,7 @@
                     <div class="footer-in-main">
                         <div class="footer-logo">
                             <div class="text-center">
-                                <img src="./assets/images/logo.png" style="height: 64px;" alt="" />
+                                <img src="./assets/images/logo (1) (1).png" style="height: 64px;" alt="" />
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">

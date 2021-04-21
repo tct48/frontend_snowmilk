@@ -28,6 +28,9 @@ import { AlertService } from './share/alert.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 const OtherComponent = [
   FormsModule,
@@ -36,7 +39,9 @@ const OtherComponent = [
   BrowserAnimationsModule,
   // ButtonsModule.forRoot(),
   TooltipModule.forRoot(),
-  AccordionModule.forRoot()
+  AccordionModule.forRoot(),
+  BsDatepickerModule.forRoot(),
+  TimepickerModule.forRoot()
 ];
 
 @NgModule({
@@ -52,7 +57,8 @@ const OtherComponent = [
     ShoppingCartComponent,
     SuccessComponent,
     PaymentComponent,
-    OrdersComponent
+    OrdersComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,

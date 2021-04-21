@@ -34,14 +34,9 @@
                     <div class="wow fadeIn box-category" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h3 style="font-weight: bold;">ประเภทสินค้า</h3>
                         <ul>
-                            <li>
-                                <a href="">
-                                    Snowwhite
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    คนแคระ
+                            <li *ngFor="let data of c.items;let i=index;">
+                                <a [routerLink]="['/product']" [queryParams]="{category:data._id}">
+                                    {{ data.name }}
                                 </a>
                             </li>
                         </ul>
@@ -68,7 +63,7 @@
                                 สั่งซื้อเรียบร้อย (รอชำระเงิน)
                             </h3>
                             <p class="text-center">
-                                รายการสั่งซื้อของคุณคือ #84646
+                                รายการสั่งซื้อของคุณคือ #00{{ o._id }}
                             </p>
                             <table class="text-center table" border="2" borderColor="#d4d4d4" style="margin-top:30px;">
                                 <tr>
@@ -80,9 +75,9 @@
                                             ชำระค่าสินค้า และแจ้งชำระเงินภายใน
                                         </h4>
                                         <h2 class="text-primary bold">
-                                            21 เม.ย. 2564
+                                            {{ o.dor | date:'dd MMMM yyyy' }}
                                         </h2>
-                                        <p>เวลา 19:29 น.</p>
+                                        <p>เวลา {{ o.dor | date:'h:mm' }} น.</p>
                                     </td>
                                     <td style="width: 33%;">
                                         <h1 class="text-primary" style="color:rgb(255,140,0)">
@@ -92,7 +87,7 @@
                                             จำนวนเงินที่ต้องชำระ
                                         </h4>
                                         <h2 class="text-primary bold" style="color:rgb(255,140,0)">
-                                            ฿270.00
+                                            {{ o.price | currency:'THB':'symbol-narrow':'1.2-2' }}
                                         </h2>
                                         <p>เลือกวิธีการชำระเงินด้านล่างนี้</p>
                                     </td>
@@ -103,8 +98,8 @@
                                         <h4 class="bold">
                                             สถานะรายการสั่งซื้อ
                                         </h4>
-                                        <h2 class="text-primary bold" style="color: #71D32B;">
-                                            รอการชำระเงิน
+                                        <h2 *ngIf="o.status" class="text-primary bold" style="color: #71D32B;">
+                                            {{ o.status==0?'ยังไม่ชำระเงิน':o.status==1?'รอการตรวจสอบ':o.status==2?'กำลังจัดส่ง':'สำเร็จ' }}
                                         </h2>
                                         <p>กรุณาชำระเงินตามข้อมูลที่ระบุ</p>
                                     </td>
@@ -112,7 +107,7 @@
                             </table>
                         </div>
                         <p style="padding:15px 32px;">
-                            คุณสามารถดูรายละเอียดการสั่งซื้อได้ที่ <b><u>รายการสั่งซื้อ #84646</u></b>
+                            คุณสามารถดูรายละเอียดการสั่งซื้อได้ที่ <b><u>รายการสั่งซื้อ #00{{ o._id }}</u></b>
                             หรือดูรายการสั่งซื้อทั้งหมดที่ <b><u>คำสั่งซื้อของฉัน</u></b>
                         </p>
                     </div>
@@ -133,7 +128,8 @@
                         <table class="table" style="padding:10px;">
                             <tr class="border" style="margin-bottom: 20px;border-radius: 8px;">
                                 <td style="width: 10%;padding:10px;">
-                                    <img style="width: 100%;" src="https://www.myarduino.net/images/banks/SCB.jpg?fbclid=IwAR101qEXbJmE40oRPq2GlW2uSPATktIAdCnozRSs_5zvHFWfUNH_0WbAbBo"
+                                    <img style="width: 100%;"
+                                        src="https://www.myarduino.net/images/banks/SCB.jpg?fbclid=IwAR101qEXbJmE40oRPq2GlW2uSPATktIAdCnozRSs_5zvHFWfUNH_0WbAbBo"
                                         alt="">
                                 </td>
                                 <td style="width: 52%;padding:8px 22px;">
@@ -153,7 +149,8 @@
                             </tr>
                             <tr class="border" style="margin-bottom: 10px;border-radius: 8px;">
                                 <td style="width: 10%;padding:10px;">
-                                    <img style="width: 100%;" src="https://www.myarduino.net/images/banks/KBANK.jpg?fbclid=IwAR0y1aa25yUHWkrYuBlnTi_5tLGGPRBOcZpP8ENGmrHfAu4AIbs_6xrxmOk"
+                                    <img style="width: 100%;"
+                                        src="https://www.myarduino.net/images/banks/KBANK.jpg?fbclid=IwAR0y1aa25yUHWkrYuBlnTi_5tLGGPRBOcZpP8ENGmrHfAu4AIbs_6xrxmOk"
                                         alt="">
                                 </td>
                                 <td style="width: 52%;padding:8px 22px;">
@@ -174,7 +171,7 @@
                         </table>
                     </div>
 
-                    <button class="btn btn-warning pull-right" [routerLink]="['/payment']">
+                    <button class="btn btn-warning pull-right" (click)="goToPayment()">
                         ไปหน้าแจ้งชำระเงิน
                         <i class="fas fa-chevron-right"></i>
                     </button>
@@ -194,7 +191,7 @@
                     <div class="footer-in-main">
                         <div class="footer-logo">
                             <div class="text-center">
-                                <img src="./assets/images/logo.png" style="height: 64px;" alt="" />
+                                <img src="./assets/images/logo (1) (1).png" style="height: 64px;" alt="" />
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">

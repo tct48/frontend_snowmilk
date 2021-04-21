@@ -33,13 +33,13 @@
                         </div>
                         <form [formGroup]="form" (submit)="onSubmit()" >
                             <div class="form-box">
-                                <label for="">ยูซเซอร์เนม :</label>
-                                <input type="text" style="text-transform:none;" formControlName="username" placeholder="ยูซเซอร์เนม" id="">
+                                <label for="">Username :</label>
+                                <input type="text" style="text-transform:none;" formControlName="username" placeholder="Enter username" id="">
                             </div>
                             <div class="form-box">
-                                <label for="">รหัสผ่าน :</label>
-                                <input type="password" formControlName="password" placeholder="รหัสผ่าน" id="">
-                                <input type="password" formControlName="c_password" style="margin-top: 8px;" placeholder="ยืนยันรหัสผ่าน" id="">
+                                <label for="">Password :</label>
+                                <input type="password" formControlName="password" placeholder="Enter password" id="">
+                                <input type="password" formControlName="c_password" style="margin-top: 8px;" placeholder="Enter confirm password" id="">
                             </div>
                             <div class="row">
                                 <div class="col-md-6">

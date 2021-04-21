@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { AuthenService } from './service/authen.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(private http: HttpClient) { }
-  // private address : string = "http://localhost/snowmilk-backend/api/";
+  constructor(private http: HttpClient,private authen:AuthenService) { }
+  // private address : string = "http://localhost/backend/api/";
   private address : string = "http://www.dee-jung.com/snowmilk/frontend/api/";
 
   requestGet(url:string, accessToken?:string){
@@ -48,13 +49,11 @@ export class HttpService {
   }
 
   appendHeaders(accessToken: any){
-    var headers = {Authorization:""};
-    if (accessToken) headers['Authorization'] = `Bearer ${accessToken}`;
-    return new HttpHeaders(headers)
+    const headersConfig = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ' + this.authen.getAuthenticated()
+    };
+    return new HttpHeaders(headersConfig);
   }
-}
-
-export interface IResult{
-  items:[],
-  total_items:number
 }

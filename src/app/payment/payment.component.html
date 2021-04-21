@@ -34,14 +34,9 @@
                     <div class="wow fadeIn box-category" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h3 style="font-weight: bold;">ประเภทสินค้า</h3>
                         <ul>
-                            <li>
-                                <a href="">
-                                    Snowwhite
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    คนแคระ
+                            <li *ngFor="let data of c.items;let i=index;">
+                                <a [routerLink]="['/product']" [queryParams]="{category:data._id}">
+                                    {{ data.name }}
                                 </a>
                             </li>
                         </ul>
@@ -62,7 +57,15 @@
                 <div class="col-md-9 col-sm-12 col-xs-12">
                     <!-- ส่วนรายละเอียดธนาคาร -->
                     <div>
+                        <div class="bold text-center">
+                            <h2 class="bold">
+                                เลขที่คำสั่งซื้อของคุณคือ
+                            </h2>
+                            <h1 class="bold" style="font-size: 26pt;">#00{{ _id }}</h1>
+                        </div>
+                        <hr>
                         <h4 class="bold">
+
                             ชำระเงินผ่านธนาคาร
                         </h4>
                         <table class="table" style="padding:10px;">
@@ -124,8 +127,13 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="">วันที่ชำระเงิน และเวลา(โดยประมาณ):</label>
-                            <input type="number" class="form-control" name="" id="">
+                            <label for="">วันที่ชำระเงิน:</label>
+                            <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+                                [bsConfig]="{ isAnimated: true }">
+                        </div>
+                        <div class="form-group">
+                            <label for="">เวลาโดยประมาณ:</label>
+                            <timepicker [(ngModel)]="mytime" [showMeridian]="false"></timepicker>
                         </div>
                         <div class="form-group">
                             <label for="">จำนวนเงิน:</label>
@@ -160,7 +168,7 @@
                     <div class="footer-in-main">
                         <div class="footer-logo">
                             <div class="text-center">
-                                <img src="./assets/images/logo.png" style="height: 64px;" alt="" />
+                                <img src="./assets/images/logo (1) (1).png" style="height: 64px;" alt="" />
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
