@@ -9,7 +9,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 export class HttpService {
 
   constructor(private http: HttpClient) { }
-  // private address : string = "http://localhost/backend/api/";
+  // private address : string = "http://localhost/snowmilk-backend/api/";
   private address : string = "http://www.dee-jung.com/snowmilk/frontend/api/";
 
   requestGet(url:string, accessToken?:string){

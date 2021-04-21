@@ -27,6 +27,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { AlertService } from './share/alert.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const OtherComponent = [
   FormsModule,
@@ -59,7 +60,12 @@ const OtherComponent = [
     AppRoutingModule,
     OtherComponent
   ],
-  providers: [AlertService],
+  providers: [
+    AlertService,
+    {
+      provide: LocationStrategy, useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

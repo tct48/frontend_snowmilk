@@ -34,11 +34,11 @@
                         <form [formGroup]="form" (submit)="onLogin()" class="reservations-box">
                             <div class="form-box">
                                 <label for="">ยูซเซอร์เนม :</label>
-                                <input type="text" formControlName="username" style="text-transform: none;" placeholder="ยูซเซอร์เนม" id="">
+                                <input type="text" formControlName="username" style="text-transform: none;" placeholder="ยูซเซอร์เนม">
                             </div>
                             <div class="form-box">
                                 <label for="">รหัสผ่าน :</label>
-                                <input type="password" formControlName="password" placeholder="รหัสผ่าน" id="">
+                                <input type="password" formControlName="password" placeholder="รหัสผ่าน">
                             </div>
                             <div class="text-center">
                                 <button type="submit" (click)="onLogin()" >
