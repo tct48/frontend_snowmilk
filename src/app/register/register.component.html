@@ -31,27 +31,31 @@
                         <div class="text-center">
                             <h2 class="form-title">ฟอร์มสมัครสมาชิก</h2>
                         </div>
-                        <form [formGroup]="form" (submit)="onSubmit()" >
+                        <form [formGroup]="form" (submit)="onSubmit()">
                             <div class="form-box">
                                 <label for="">Username :</label>
-                                <input type="text" style="text-transform:none;" formControlName="username" placeholder="Enter username" id="">
+                                <input type="text" style="text-transform:none;" formControlName="username"
+                                    placeholder="Enter username" id="">
                             </div>
                             <div class="form-box">
                                 <label for="">Password :</label>
                                 <input type="password" formControlName="password" placeholder="Enter password" id="">
-                                <input type="password" formControlName="c_password" style="margin-top: 8px;" placeholder="Enter confirm password" id="">
+                                <input type="password" formControlName="c_password" style="margin-top: 8px;"
+                                    placeholder="Enter confirm password" id="">
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-box">
                                         <label for="">ชื่อจริง :</label>
-                                        <input type="text" style="text-transform:none;" formControlName="firstname" placeholder="ชื่อจริง" id="">
+                                        <input type="text" style="text-transform:none;" formControlName="firstname"
+                                            placeholder="ชื่อจริง" id="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-box">
                                         <label for="">นามสกุล :</label>
-                                        <input type="text" style="text-transform:none;" formControlName="lastname" placeholder="นามสกุล" id="">
+                                        <input type="text" style="text-transform:none;" formControlName="lastname"
+                                            placeholder="นามสกุล" id="">
                                     </div>
                                 </div>
                             </div>

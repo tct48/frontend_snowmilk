@@ -70,7 +70,6 @@ export class ProductDetailComponent implements OnInit {
   loadRandomProduct() {
     this.product.loadRandomProduct(this._id).then(result => {
       this.rand_product = result;
-      console.log(result)
     })
   }
 

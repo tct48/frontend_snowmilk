@@ -9,7 +9,7 @@
               <h2 style="font-weight: bold;"> ที่ได้ชิมคำแรกก็ติดใจ</h2>
               <p class="kanit">เขาว่าความอร่อยมันหลอกกันไม่ได้</p>
               <div class="book-btn">
-                <a href="#reservation" [routerLink]="['/product']" class="table-btn hvr-underline-from-center">สั่งเลย</a>
+                <a href="#reservation" [routerLink]="'/product'" class="table-btn hvr-underline-from-center">สั่งเลย</a>
               </div>
             </div>
             <!-- end banner-cell -->
@@ -25,7 +25,7 @@
 
   
   <!-- end banner -->
-  <div id="our_team" class="menu-main pad-top-100 pad-bottom-100 parallax" style="background:rgb(29, 29, 29)">
+  <div id="promotion" class="menu-main pad-top-100 pad-bottom-100 parallax" style="background:rgb(29, 29, 29)">
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -40,15 +40,15 @@
               <div class="col-md-6 col-sm-6">
                 <div class="blog-block light33">
                   <div class="blog-img-box">
-                    <img src="./assets/images/featured-image-01.jpg" alt="" />
+                    <img src="./assets/images/promotion.png" style="width: 100%;height: 270px;object-fit:cover;" alt="" />
                     <div class="overlay">
-                      <a href=""><i class="fa fa-link" aria-hidden="true"></i></a>
+                      <a [routerLink]="'/promotion'"><i class="fa fa-link" aria-hidden="true"></i></a>
                     </div>
                   </div>
                   <div class="blog-dit">
-                    <p><span>25 NOVEMBER, 2014</span></p>
-                    <h2>LATEST RECIPES JUST IN!</h2>
-                    <h5>BY John Doggett</h5>
+                    <p><span>22 MARCH, 2021</span></p>
+                    <h2 style="font-weight: bold;">Snowmilk Gelato สร้างความสดชื่นดับร้อน สั่งเลย</h2>
+                    <h5>BY เจ้าของร้าน</h5>
                   </div>
                 </div>
               </div>
@@ -117,7 +117,7 @@
       </div>
       <!-- end row -->
       
-      <button class="btn btn-lg btn-warning btn-block hvr-underline-from-center" [routerLink]="['/product']">ดูสินค้าทั้งหมด</button>
+      <button class="btn btn-lg btn-warning btn-block hvr-underline-from-center" [routerLink]="'/product'">ดูสินค้าทั้งหมด</button>
     </div> 
     <!-- end container -->
   </div>
@@ -135,7 +135,7 @@
           </div>
           <div class="row pad-bottom-100">
             <div class="{{ best_seller.total_items==3?'col-md-4':best_seller.total_items==2?'col-md-6':'col-md-12' }}" *ngFor="let data of best_seller.items;let i = index;">
-              <img src="{{ data.image }}" class="product-best-seller" style="width: 100%;" alt="">
+              <img src="{{ data.image }}" [routerLink]="'/product-detail'" [queryParams]="{id:data._id}" [tooltip]="data.name" placement="bottom" class="product-best-seller" style="width: 100%;" alt="">
             </div>
           </div>
           <!-- end special-box -->
@@ -192,101 +192,7 @@
     </div>
     <!-- end container -->
   </div>
-  
 
-  <!-- end team-main -->
-  
-  <div id="footer" class="footer-main">
-    <!-- end footer-news -->
-    <div class="footer-box pad-top-70">
-      <div class="container">
-        <div class="row">
-          <div class="footer-in-main">
-            <div class="footer-logo">
-              <div class="text-center">
-                <img src="./assets/images/logo (1) (1).png" style="height: 64px;" alt="" />
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-              <div class="footer-box-a">
-                <h3>เกี่ยวกับเรา</h3>
-                <p>Snowmilk Gelato ไอศกรีมโฮมเมดระดับพรีเมียม รสชาติเข้มข้นถูกปากคนไทย</p>
-                <ul class="socials-box footer-socials pull-left">
-                  <li>
-                    <a href="#">
-                      <div class="social-circle-border"><i class="fa  fa-facebook"></i></div>
-                    </a>
-                  </li>
-                </ul>
-  
-              </div>
-              <!-- end footer-box-a -->
-            </div>
-            <!-- end col -->
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-              <div class="footer-box-b">
-                <h3>สินค้าใหม่</h3>
-                <ul>
-                  <li><a href="#">Italian Bomba Sandwich</a></li>
-                  <li><a href="#">Double Dose of Pork Belly</a></li>
-                  <li><a href="#">Spicy Thai Noodles</a></li>
-                  <li><a href="#">Triple Truffle Trotters</a></li>
-                </ul>
-              </div>
-              <!-- end footer-box-b -->
-            </div>
-            <!-- end col -->
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-              <div class="footer-box-c">
-                <h3>ติดต่อเรา</h3>
-                <p>
-                  <i class="fa fa-map-signs" aria-hidden="true"></i>
-                  <span>421 ซอยร่วมสุข 4/18 ตำบล บ้านใหม่ อำเภอเมืองปทุมธานี ปทุมธานี 12000</span>
-                </p>
-                <p>
-                  <i class="fa fa-mobile" aria-hidden="true"></i>
-                  <span>
-                    094-442-8897
-                  </span>
-                </p>
-                <p>
-                  <i class="fa fa-envelope" aria-hidden="true"></i>
-                  <span><a href="#">snowmilkgelato@gmail.com</a></span>
-                </p>
-              </div>
-              <!-- end footer-box-c -->
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-              <div class="footer-box-c">
-                <h3>รสชาติไอศกรีม</h3>
-                <h4 style="color:white">ที่ได้ชิมคำแรกก็ติดใจ</h4>
-              </div>
-            <!-- end col -->
-          </div>
-          <!-- end footer-in-main -->
-        </div>
-        <!-- end row -->
-      </div>
-      <!-- end container -->
-  
-      <!-- end copyright-main -->
-    </div>
-    <!-- end footer-box -->
-    <div id="copyright" class="copyright-main">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <h6 class="copy-title"> Copyright &copy; 2017 Food Funday is powered by <a href="#" target="_blank"></a>
-            </h6>
-          </div>
-        </div>
-        <!-- end row -->
-      </div>
-      <!-- end container -->
-    </div>
-  </div>
-  </div>
-  
   <!-- end footer-main -->
   
   <a href="#" class="scrollup" style="display: none;">Scroll</a>

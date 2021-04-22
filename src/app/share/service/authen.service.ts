@@ -11,7 +11,6 @@ export class AuthenService {
   private cart:number;
 
   setAuthenticated(accessToken:string, user:IUser):void{
-    console.log(user);
     localStorage.setItem("login",user._id);
     localStorage.setItem("name", user.name);
     localStorage.setItem("cart",user.cart);

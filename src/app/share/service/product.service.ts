@@ -41,7 +41,6 @@ export class ProductService {
 
   loadRandomProduct(_id:string) {
     let url = `product/_get_random_four.php?_id=${_id}`;
-    console.log(url)
     return this.http.requestGet(url, this.authen.getAuthenticated())
       .toPromise() as Promise<any>
   }

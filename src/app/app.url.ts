@@ -7,5 +7,6 @@ export const AppURL = {
     ShoppingCart:'cart',
     Success:'success',
     Payment:'payment',
-    Orders:'orders'
+    Orders:'orders',
+    Promotion:'promotion'
 }

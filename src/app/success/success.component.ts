@@ -22,7 +22,7 @@ export class SuccessComponent implements OnInit {
     window.scrollTo(0, 0)
     this.activateRouter.queryParams.forEach(params => {
       if(!params._id){
-        this.alert.notify();
+        this.router.navigateByUrl("/home")
         return;
       }
       
@@ -47,7 +47,6 @@ export class SuccessComponent implements OnInit {
   loadOrder(){
     this.order.loadOrderByID(this._id).then(result=>{
       this.o = result;
-      console.log(this.o);
     })
   }
 

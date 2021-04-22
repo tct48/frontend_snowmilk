@@ -42,7 +42,6 @@ export class OrdersComponent implements OnInit {
   loadOrder() {
     this.order.loadOrderByUser(this._id).then(result => {
       this.o = result;
-      console.log(this.o)
     })
   }
 

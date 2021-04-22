@@ -61,7 +61,6 @@ export class ShoppingCartComponent implements OnInit {
 
   loadCate() {
     this.category.loadCategory().then(result => {
-      // console.log(result);
       this.c = result;
     })
   }
@@ -69,7 +68,6 @@ export class ShoppingCartComponent implements OnInit {
   model = [];
   loadItem() {
     this.product.loadCart(localStorage.getItem("login")).then(result => {
-      console.log(this.item)
       this.item = result;
       this.item.items.forEach(element => {
         this.model.push(element._id)
@@ -124,7 +122,6 @@ export class ShoppingCartComponent implements OnInit {
   onRemove(_id:string){
     this.order.removeItemFromCartByID(_id).then(result=>{
       this.loadItem();
-      console.log(result)
     })
   }
 }

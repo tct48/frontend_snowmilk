@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../alert.service';
 import { AuthenService } from '../service/authen.service';
 import { ProductService } from '../service/product.service';
@@ -15,10 +15,14 @@ export class AuthNavBarComponent implements OnInit {
     private alert:AlertService,
     private authen:AuthenService,
     private product:ProductService,
+    private activateRouter:ActivatedRoute,
     private router:Router
   ) { 
     this.checkLogin();
     this.cart = localStorage.getItem("cart");
+    this.activateRouter.queryParams.forEach(element=>{
+      this.r = element.r;
+    })
   }
 
   name:string;
@@ -28,6 +32,7 @@ export class AuthNavBarComponent implements OnInit {
   }
 
   login:boolean = false;
+  r:string;
 
   checkLogin(){
     if(localStorage.getItem("login")){

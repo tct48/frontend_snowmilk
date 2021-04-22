@@ -47,17 +47,14 @@ export class SigninComponent implements OnInit {
         return;
       }
 
-      if (result.total_items == 1) {
-        console.log(result.items[0])
+      if (result.total_items == 1 && result.items[0]._id!=null) {
         this.authen.setAuthenticated("accessKey",result.items[0]);
         this.router.navigateByUrl("/home");
-      }else if(result.total_items==0){
+      }else{
         this.alert.notify("ไม่พบข้อมูลผู้ใช้งาน");
       }
     }).catch(err => {
     })
-
-    // console.log("ยินดีต้อนรับ")
   }
 
 }

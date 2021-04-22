@@ -34,14 +34,20 @@
                         <form [formGroup]="form" (submit)="onLogin()" class="reservations-box">
                             <div class="form-box">
                                 <label for="">ยูซเซอร์เนม :</label>
-                                <input type="text" formControlName="username" style="text-transform: none;" placeholder="ยูซเซอร์เนม">
+                                <input type="text" formControlName="username" style="text-transform: none;"
+                                    placeholder="ยูซเซอร์เนม">
                             </div>
                             <div class="form-box">
                                 <label for="">รหัสผ่าน :</label>
                                 <input type="password" formControlName="password" placeholder="รหัสผ่าน">
                             </div>
                             <div class="text-center">
-                                <button type="submit" (click)="onLogin()" >
+                                <button class="btn btn-secondary" style="margin-right: 10px;"
+                                    [routerLink]="'/register'">
+                                    สมัครสมาชิก
+                                </button>
+                                <button class="btn btn-warning" style="margin-left: 10px;" type="submit"
+                                    (click)="onLogin()">
                                     ล๊อกอิน
                                 </button>
                             </div>
@@ -53,6 +59,5 @@
         </div>
         <!-- end container -->
     </div>
-
 
 </app-auth-content>

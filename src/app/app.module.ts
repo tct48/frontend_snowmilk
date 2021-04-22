@@ -27,10 +27,11 @@ import { OrdersComponent } from './orders/orders.component';
 import { AlertService } from './share/alert.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DatePipe, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { PromotionComponent } from './promotion/promotion.component';
 
 const OtherComponent = [
   FormsModule,
@@ -58,7 +59,8 @@ const OtherComponent = [
     SuccessComponent,
     PaymentComponent,
     OrdersComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    PromotionComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +70,7 @@ const OtherComponent = [
   ],
   providers: [
     AlertService,
+    DatePipe,
     {
       provide: LocationStrategy, useClass: HashLocationStrategy
     }

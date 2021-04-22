@@ -6,6 +6,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductComponent } from './product/product.component';
+import { PromotionComponent } from './promotion/promotion.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { SigninComponent } from './signin/signin.component';
@@ -21,6 +22,7 @@ const RouterLists: Routes = [
     { path:AppURL.Success, component:SuccessComponent,canActivate:[AuthenticationGuard] },
     { path:AppURL.Payment, component:PaymentComponent,canActivate:[AuthenticationGuard] },
     { path:AppURL.Orders, component:OrdersComponent,canActivate:[AuthenticationGuard] },
+    { path:AppURL.Promotion, component:PromotionComponent },
     {
         path:AppURL.ProductDetail, component:ProductDetailComponent
     }

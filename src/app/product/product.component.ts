@@ -49,7 +49,6 @@ export class ProductComponent implements OnInit {
 
   loadCate() {
     this.category.loadCategory().then(result => {
-      // console.log(result);
       this.c = result;
     })
   }
@@ -58,7 +57,6 @@ export class ProductComponent implements OnInit {
 
   loadProduct(option: IOption) {
     this.product.loadAllProduct(this.option).then(result => {
-      console.log(result);
       this.p = result;
     })
   }
