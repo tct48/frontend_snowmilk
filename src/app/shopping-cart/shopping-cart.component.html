@@ -139,7 +139,8 @@
                                     <span style="color:maroon;">**ได้รับส่วนลด {{ discount }} บาท</span>
                                 </p>
                                 <p *ngIf="promo_condition" class="text-success">
-                                    ส่วนลดของคุณคือ {{ discount }} บาท
+                                    ส่วนลดของคุณคือ {{ discount }} บาท <br>
+                                    <span class="text-danger" *ngIf="discount==0">**ไม่ตรงตามเงื่อนไขโปรโมชั่น</span>
                                 </p>
                             </accordion-group>
                             <accordion-group [isOpen]="true">

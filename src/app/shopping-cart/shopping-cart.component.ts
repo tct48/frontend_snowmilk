@@ -188,9 +188,13 @@ export class ShoppingCartComponent implements OnInit {
         } else if (this.promo_condition[0].type == 1) {
           if (this.qty[0] >= this.promo_condition[0].condit) {
             this.discount = this.amount / 2;
-            if (this.discount > this.promo_condition[0].max_discount) {
+            if (this.discount > this.promo_condition[0].max_discount && this.promo_condition[0].max_discount!=0) {
               this.discount = this.promo_condition[0].max_discount;
+            }else if(this.promo_condition[0].max_discount==0){
+              this.discount = this.amount*this.promo_condition[0].discount/100;
             }
+          }else{
+            this.discount=0;
           }
         }
       } else {

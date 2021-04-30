@@ -20,15 +20,17 @@ export class ProductComponent implements OnInit {
     private activateRouter: ActivatedRoute,
   ) {
     window.scrollTo(0, 0);
+    this.loadProduct(this.option);
     this.loadCate();
     this.cart = localStorage.getItem("cart");
     this.activateRouter.queryParams.forEach(params => {
-      if(params.category){
-        this.option.category=params.category;
-      }else{
-        this.option.category=1;
+      if (params.category) {
+        this.option.category = params.category;
+        var el = document.getElementById(params.category);
+        el.scrollIntoView();
+      } else {
+        this.option.category = 1;
       }
-      this.loadProduct(this.option);
     });
     this.getPromotion();
   }
@@ -48,7 +50,7 @@ export class ProductComponent implements OnInit {
     total_items: 0
   }
 
-  sq:number = 0;
+  sq: number = 0;
 
   loadCate() {
     this.category.loadCategory().then(result => {
@@ -61,26 +63,25 @@ export class ProductComponent implements OnInit {
   loadProduct(option: IOption) {
     this.product.loadAllProduct(this.option).then(result => {
       this.p = result;
-      console.log(result)
     })
   }
 
-  onLoadMore(){
-    this.option.sp+=1;
-    this.product.loadAllProduct(this.option).then(result=>{
+  onLoadMore() {
+    this.option.sp += 1;
+    this.product.loadAllProduct(this.option).then(result => {
       result.items.forEach(element => {
         this.p.items.push(element);
       });
     })
   }
 
-  
-  promote:any={
-    total_items:0,
-    items:[]
+
+  promote: any = {
+    total_items: 0,
+    items: []
   }
-  getPromotion(){
-    this.promotion.loadAllPromotion({sp:0,lp:4}).then(result=>{
+  getPromotion() {
+    this.promotion.loadAllPromotion({ sp: 0, lp: 4 }).then(result => {
       this.promote = result;
       console.log(this.promote)
     })

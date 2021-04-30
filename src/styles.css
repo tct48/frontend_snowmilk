@@ -6,3 +6,24 @@
 .hover:hover{
     cursor:pointer!important;
 }
+
+#shang-chi{
+    position: fixed;
+    width: 180px;
+    bottom: 15px;
+    left: 15px;
+    right: 0px;
+    margin-bottom: 0px;    
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    padding:8px 15px;
+    z-index: 500;
+}
+
+#shang-chi a.facebook{
+    color:#3b5998;   
+}
+
+#shang-chi a.line{
+    color:#00b900;
+}
