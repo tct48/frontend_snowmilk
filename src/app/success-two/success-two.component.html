@@ -45,10 +45,8 @@
                             <h3 style="font-weight: bold;">
                                 โปรโมชั่นสุดพิเศษ
                             </h3>
-                            <img src="http://html.lionode.com/focus/image/banners/LeftBanner.jpg?fbclid=IwAR3xa7eRqCsPDTiJeBhyYLuEDXU4KZIdP1sqsdWSc3eE277L6XRLtqKqQTE"
-                                class="img-thumbnail">
-                            <img src="https://img.his.in.th/cdn-cgi/image/format=auto/his/image/upload/w_640,h_853,c_fill,f_jpg/his/product/p6gLs2NmBtGG0aJNpUaRx0W6Dx0cIqQY/PH804808-a2.jpg"
-                                class="img-thumbnail">
+                            <a [routerLink]="'/product'"><img src="./assets/images/promotion.png"
+                                    class="img-thumbnail"></a>
                         </div>
                     </div>
                 </div>
@@ -60,7 +58,9 @@
                             <h3 class="bold text-center">
                                 <i class="fas fa-check-circle text-success" style="font-size: 40pt;color: #71D32B;"></i>
                                 <br>
-                                สั่งซื้อเรียบร้อย (รอชำระเงิน)
+                                สั่งซื้อเรียบร้อย ({{
+                                o.status==0?'ยังไม่ชำระเงิน':o.status==1?'รอการตรวจสอบ':o.status==2?'กำลังจัดส่ง':'สำเร็จ'
+                                }})
                             </h3>
                             <p class="text-center">
                                 รายการสั่งซื้อของคุณคือ #00{{ o._id }}
@@ -92,14 +92,18 @@
                                         <p>เลือกวิธีการชำระเงินด้านล่างนี้</p>
                                     </td>
                                     <td style="width: 33%;">
-                                        <h1 class="text-success" [ngStyle]="{'color':o.status==0?'red':o.status==1?'orange':'green'}">
+                                        <h1 class="text-success"
+                                            [ngStyle]="{'color':o.status==0?'red':o.status==1?'orange':'green'}">
                                             <i class="fas fa-hourglass-half"></i>
                                         </h1>
                                         <h4 class="bold">
                                             สถานะรายการสั่งซื้อ
                                         </h4>
-                                        <h2 *ngIf="o.status" class="text-primary bold" [ngStyle]="{'color':o.status==0?'red':o.status==1?'orange':'green'}">
-                                            {{ o.status==0?'ยังไม่ชำระเงิน':o.status==1?'รอการตรวจสอบ':o.status==2?'กำลังจัดส่ง':'สำเร็จ' }}
+                                        <h2 *ngIf="o.status" class="text-primary bold"
+                                            [ngStyle]="{'color':o.status==0?'red':o.status==1?'orange':'green'}">
+                                            {{
+                                            o.status==0?'ยังไม่ชำระเงิน':o.status==1?'รอการตรวจสอบ':o.status==2?'กำลังจัดส่ง':'สำเร็จ'
+                                            }}
                                         </h2>
                                         <p>กรุณาชำระเงินตามข้อมูลที่ระบุ</p>
                                     </td>
@@ -110,6 +114,73 @@
                             คุณสามารถดูรายละเอียดการสั่งซื้อได้ที่ <b><u>รายการสั่งซื้อ #00{{ o._id }}</u></b>
                             หรือดูรายการสั่งซื้อทั้งหมดที่ <b><u>คำสั่งซื้อของฉัน</u></b>
                         </p>
+                    </div>
+
+                    <div style="margin-top:20px;">
+                        <accordion [isAnimated]="true">
+                            <accordion-group>
+                                <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
+                                    <div class="pull-left float-left">รายละเอียดการสั่งซื้อ</div>
+                                    <span class="pull-right">
+                                        <i class="fas fa-caret-down"></i>
+                                    </span>
+                                </button>
+                                <table class="table table-cart">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 16%;">รูปภาพ</th>
+                                            <th style="width: 20%;">สินค้า</th>
+                                            <th style="width: 16%;">ประเภท</th>
+                                            <th style="min-width: 100px;">จำนวน</th>
+                                            <th style="width: 16%;">ราคาต่อหน่วย</th>
+                                            <th style="width: 16%;">รวมทั้งสิ้น</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let data of item.items;" class="text-center">
+                                            <td>
+                                                <img src="{{ data.image }}" style="width: 100%;" alt="" class="thumbnail">
+                                            </td>
+                                            <td>{{ data.name }}</td>
+                                            <td>{{ data.category }}</td>
+                                            <td>
+                                                {{ data.qty }}
+                                            </td>
+                                            <td class="text-right">
+                                                {{ data.price | currency:'THB':'symbol-narrow':'1.2-2' }}
+                                            </td>
+                                            <td class="text-right">
+                                                {{ data.price*data.qty | currency:'THB':'symbol-narrow':'1.2-2' }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                ส่วนลด
+                                            </td>
+                                            <td class="text-right">
+                                                {{ o.discount | currency:'THB':'symbol-narrow':'1.2-2' }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                ค่าขนส่ง
+                                            </td>
+                                            <td class="text-right">
+                                                {{ o.total - o.discount - amount | currency:'THB':'symbol-narrow':'1.2-2' }}
+                                            </td>
+                                        </tr>
+                                        <tr class="bold">
+                                            <td colspan="5">
+                                                รวมทั้งสิ้น
+                                            </td>
+                                            <td class="text-right">
+                                                {{ o.total | currency:'THB':'symbol-narrow':'1.2-2' }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </accordion-group>
+                        </accordion>
                     </div>
 
                     <div style="padding:30px 0px;">
@@ -171,9 +242,14 @@
                         </table>
                     </div>
 
-                    <button class="btn btn-warning pull-right" (click)="goToPayment()">
+                    <button *ngIf="o.status==0" class="btn btn-warning pull-right" (click)="goToPayment()">
                         ไปหน้าแจ้งชำระเงิน
                         <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <button *ngIf="o.status>0" class="btn btn-secondary pull-right">
+                        แจ้งชำระเงินแล้วรอการตรวจสอบ
+                        <i class="fas fa-clock"></i>
                     </button>
 
                 </div>

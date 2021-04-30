@@ -22,55 +22,53 @@
     </div>
 
     <div style="margin:40px 0px;" class="pad-bottom-100">
-        <div class="container">
+        <div *ngFor="let data of items;" class="container">
             <ul class="breadcrumb" style="border-radius: 0px;background:#ebebeb;color:#808080;">
                 <li class="breadcrumb-item"><i class="fas fa-home"></i></li>
                 <li class="breadcrumb-item">ตะกร้าสินค้า</li>
             </ul>
             <h1 class="bold" style="color:#FDCB03;">
-                ร้อนนี้คุณมีเครื่องมือสู้ความร้อนหรือยัง ถ้ายังรีบสั่งเลย Snowmilk Gelato สร้างความสดชื่นดับร้อน
+                {{ data.title }}
             </h1>
-            <p style="color:#d3d3d3">โพสเมื่อวันที่ 22 Apr 2021</p>
+            <p style="color:#d3d3d3">โพสเมื่อวันที่ {{ data.dor | date:'dd MM yyyy' }}</p>
             <div class="row">
                 <div class="col-md-4">
-                    <img src="https://scontent.fbkk13-1.fna.fbcdn.net/v/t1.6435-9/154976257_100485692109502_3618439967363907002_n.png?_nc_cat=105&ccb=1-3&_nc_sid=730e14&_nc_eui2=AeFRdxYXER6Sh8m_ltzYx1NrIe40nYpQ3dsh7jSdilDd29jk0zU-anNZfnoaVBgsEYPdQ87w-CBwewuaj2hXuJyl&_nc_ohc=iC2d3o8qs4oAX_7HEEW&_nc_ht=scontent.fbkk13-1.fna&oh=7de50ba61a8806f0c2f79e2f5659be08&oe=60A57B4D"
-                        class="thumbnail" style="width: 100%;" alt="">
+                    <img [src]="data.image" class="thumbnail" style="width: 100%;" alt="">
                     <button class="btn btn-warning btn-block" [routerLink]="'/product'">
                         สั่งเลย
                     </button>
                 </div>
                 <div class="col-md-8" style="text-align: justify;">
-                    <h3 class="bold">
-                        ร้อนนี้คุณมีเครื่องมือสู้ความร้อนหรือยัง ถ้ายังรีบสั่งเลย Snowmilk Gelato สร้างความสดชื่นดับร้อน
-                    </h3>
-                    <p style="text-indent: 30px;">
-                        #SnowmilkGelato เราสร้างความอร่อย มากกว่า 15 ปี เราไม่อยากให้คุณพลาด
-                        อีกต่อไปถ้าคุณได้ลองแล้วคุณจะหลงรัก ในหนึ่งถ้วย คุณจะได้สัมผัส รสชาติ 3 แบบ 3 สไตล์ ในหนึ่งถ้วย
-                    </p>
-                    <ul>
-                        <li style="margin:15px;margin-left: 30px;">
-                            <i class="fas fa-heart" style="color:#da4dbb"></i>&nbsp;
-                            สัมผัสแรกที่คุณจะรู้สึก ฟินไปกับความหอม มัน เนียน นุ่ม เนื้อแน่นๆ ของ นมสดแท้ ครีมสดอย่างดี
-                            ในรูปแบบ Gelato
-                        </li>
-                        <li style="margin:15px;margin-left: 30px;">
-                            <i class="fas fa-heart" style="color:#da4dbb"></i>&nbsp;
-                            สัมผัสที่สอง คุณจะรู้สึก หอมหวานของของผลไม้แท้ ๆ ที่เบรี้ยวหวานกำลังดี
-                            ที่ทำให้คุณจะสดชื่นในทันที่ตั้งแต่คำแรก
-                        </li>
-                        <li style="margin:15px;margin-left: 30px;">
-                            <i class="fas fa-heart" style="color:#da4dbb"></i>&nbsp;
-                            สัมผัสที่สาม คือการผสมผสานกันอย่างลงตัวของนมสดและผลไม้ ที่เข้ากันอย่างหน้าประหลาดใจ
-                            จนทำให้คุณต้องฟินเวอร์ กว่าจะรู้ตัวอีกที่ก็หมดถ้วยกันซะละ
-                        </li>
-                    </ul>
-                    <p style="text-indent: 30px;text-align: justify;">
-                        Snowmilk เราผลิตไอศกรีมด้วยความตั้งใจ และใส่ใจในคุณภาพ ทุกขั้นตอน
-                        จากจุดเริ่มต้นในการผลิตไอศกรีมให้ลูกได้ทานเองภายในบ้าน ประสบการณ์ กว่า15 ปี ที่ทำให้เติบโต
-                        เป็นโรงงาน จนได้รับความไว้วางใจ จาก ร้านอาหาร และภัตตาคารชั้นนำหลากหลายที่ เช่น ห้องอาหาร ลามูล
-                        รามายณะ ใน KingPower ร้านแสนยอด ร้านอิ่มปลาเผา ร้านชินคันเซ็น ร้าน GTh และอื่น ๆอีกมากมาย
-                        หลายที่
-                    </p>
+                    <h1 class="bold">
+                        {{ data.title }}
+                    </h1>
+                    <p style="color:#d3d3d3">โพสเมื่อวันที่ {{ data.dor | date:'dd MM yyyy' }}</p>
+                    <p [innerHtml]="data.content"></p>
+                    <div *ngIf="data.type>0">
+                        <h3 class="bold">
+                            โปรโมชั่นพิเศษ
+                        </h3>
+                        <ul>
+                            <li>
+                                *ลดทันที {{ data.discount }} % *เมื่อซื้อครบ
+                                {{ data.type==1?data.condit:data.condit | number:'1.2-2' }}
+                                {{ data.type==1?'ชิ้น':'บาท' }}
+                            </li>
+                            <li>
+                                *{{ data.max_discount==0?'ไม่มีขั้นต่ำ':'สูงสุดไม่เกิน' }} {{
+                                data.max_discount>0?data.max_discount:'' }}
+                                <span *ngIf="data.max_discount>0"> บาท</span>
+                            </li>
+                            <li>
+                                *เพียงใช้โค้ด
+                                <h2>
+                                    <span class="badge" style="background-color: #FDCB03;">
+                                        {{ data.code }}
+                                    </span>
+                                </h2>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

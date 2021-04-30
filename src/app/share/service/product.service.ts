@@ -19,6 +19,12 @@ export class ProductService {
       .toPromise() as Promise<any>
   }
 
+  loadFooter(){
+    let url = "product/_get_top_new_footer.php";
+    return this.http.requestGet(url, this.authen.getAuthenticated())
+      .toPromise() as Promise<any>
+  }
+
   loadBestSeller() {
     let url = "product/_get_best_seller.php";
     return this.http.requestGet(url, this.authen.getAuthenticated())

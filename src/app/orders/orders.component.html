@@ -45,10 +45,8 @@
                             <h3 style="font-weight: bold;">
                                 โปรโมชั่นสุดพิเศษ
                             </h3>
-                            <img src="http://html.lionode.com/focus/image/banners/LeftBanner.jpg?fbclid=IwAR3xa7eRqCsPDTiJeBhyYLuEDXU4KZIdP1sqsdWSc3eE277L6XRLtqKqQTE"
-                                class="img-thumbnail">
-                            <img src="https://img.his.in.th/cdn-cgi/image/format=auto/his/image/upload/w_640,h_853,c_fill,f_jpg/his/product/p6gLs2NmBtGG0aJNpUaRx0W6Dx0cIqQY/PH804808-a2.jpg"
-                                class="img-thumbnail">
+                            <a *ngFor="let data of promote.items;" class="promote-img" [routerLink]="'/promotion'"
+                                [queryParams]="{_id:data._id}"><img src="{{ data.image }}" class="img-thumbnail"></a>
                         </div>
                     </div>
                 </div>
@@ -100,11 +98,16 @@
                                     <td>
                                         {{ data.total | currency:'THB':'symbol-narrow':'1.2-2' }}
                                     </td>
-                                    <td class="bold" [ngStyle]="{'color':data.status==0?'red':data.status==1?'orange':'green'}">    
+                                    <td class="bold"
+                                        [ngStyle]="{'color':data.status==0?'red':data.status==1?'orange':'green'}">
                                         {{ data.status==0?'ยังไม่ชำระเงิน':data.status==1?'รอการตรวจสอบ':'จัดส่งแล้ว' }}
+                                        <button class="btn btn-small btn-success" *ngIf="data.supplies" [tooltip]="data.supplies">
+                                            <i class="fas fa-shipping-fast"></i>
+                                        </button>
                                     </td>
                                     <td>
-                                        <button class="btn btn-info" (click)="goToSuccess(data._id)" tooltip="ดูรายละเอียด">
+                                        <button class="btn btn-info" (click)="goToSuccess(data._id)"
+                                            tooltip="ดูรายละเอียด">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </td>
@@ -112,7 +115,8 @@
                             </tbody>
                         </table>
                         <p class="margin-top:30px;">
-                            แสดงรายการ {{ o.items.length>0?'1':'0' }} - {{ o.items.length }} จากทั้งหมด {{o.total_items }} รายการ
+                            แสดงรายการ {{ o.items.length>0?'1':'0' }} - {{ o.items.length }} จากทั้งหมด {{o.total_items
+                            }} รายการ
                         </p>
                     </div>
 

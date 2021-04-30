@@ -14,21 +14,21 @@
                 <span class="icon-bar"></span>
               </button>
               <div class="logo">
-                <a class="navbar-brand js-scroll-trigger logo-header" href="#">
+                <a class="navbar-brand js-scroll-trigger logo-header" [routerLink]="'/home'">
                   <img src="./assets/images/logo (1) (1).png" style="height: 43px;" alt="">
                 </a>
               </div>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li class="{{ r?'':'active' }}"><a [routerLink]="'/home'">หน้าแรก</a></li>
-                <li class="{{ r=='about'?'active':'' }}"><a [routerLink]="'/home'" [queryParams]="{r:'about'}">เกี่ยวกับเรา</a></li>
+                <li routerLinkActive="active"><a [routerLink]="'/home'">หน้าแรก</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['/about']" href="#about">เกี่ยวกับเรา</a></li>
                 <li routerLinkActive="active"><a [routerLink]="'/product'">เมนู</a></li>
-                <li class="{{ r=='promotion'?'active':'' }}"><a [routerLink]="'/home'" [queryParams]="{r:'promotion'}">โปรโมชั่น</a></li>
-                <li class="{{ r=='contact'?'active':'' }}"><a [routerLink]="'/home'" [queryParams]="{r:'footer'}">ติดต่อเรา</a></li>
+                <li routerLinkActive="active"><a [routerLink]="'/preview-promotion'">โปรโมชั่น</a></li>
+                <li *ngIf="login" class="{{ r=='contact'?'active':'' }}"><a [routerLink]="'/oem'" >ติดต่อเรา</a></li>
                 <li *ngIf="login" routerLinkActive="active" ><a [routerLink]="'/orders'">คำสั่งซื้อของฉัน</a></li>
                 <li *ngIf="!login" routerLinkActive="active"><a [routerLink]="'/login'">เข้าสู่ระบบ</a></li>
-                <li *ngIf="login" routerLinkActive="active"><a [routerLink]="'/cart'" (click)="onLogout()" tooltip="ออกจากระบบ" placement="top">{{ name }}</a></li>
+                <li><a [routerLink]="'/cart'" (click)="onLogout()" tooltip="ออกจากระบบ" placement="top">{{ name }}</a></li>
                 <li *ngIf="login" routerLinkActive="active"><a [routerLink]="'/cart'" tooltip="ดูตะกร้าสินค้า" placement="top"><i class="fas fa-shopping-cart"></i>({{ cart }})</a></li>
               </ul>
             </div>

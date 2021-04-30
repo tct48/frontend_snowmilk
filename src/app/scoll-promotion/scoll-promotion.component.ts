@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppURL } from '../app.url';
 import { AlertService } from '../share/alert.service';
@@ -6,12 +6,12 @@ import { IOption, ProductService } from '../share/service/product.service';
 import { PromotionService } from '../share/service/promotion.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-scoll-promotion',
+  templateUrl: './scoll-promotion.component.html',
+  styleUrls: ['./scoll-promotion.component.css']
 })
-export class HomeComponent implements OnInit {
-
+export class ScollPromotionComponent implements OnInit {
+  @ViewChild("promotion") MyProp: ElementRef;
   constructor(
     private product: ProductService,
     private alert: AlertService,
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
     private activateRouter: ActivatedRoute,
     private promotion:PromotionService
   ) {
-    window.scrollTo(0, 0);
+
     this.loadProductTop()
     this.loadBestSell();
 
@@ -30,7 +30,10 @@ export class HomeComponent implements OnInit {
 
   r: string;
 
-  ngOnInit(): void {
+  ngOnInit() {
+    setTimeout(() => {
+      this.MyProp.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, 500);
   }
 
   top_product: any = {

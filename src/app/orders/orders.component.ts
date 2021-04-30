@@ -4,6 +4,7 @@ import { AppURL } from '../app.url';
 import { AlertService } from '../share/alert.service';
 import { CategoryService } from '../share/service/category.service';
 import { OrderService } from '../share/service/order.service';
+import { PromotionService } from '../share/service/promotion.service';
 
 @Component({
   selector: 'app-orders',
@@ -16,12 +17,14 @@ export class OrdersComponent implements OnInit {
     private router:Router,
     private category: CategoryService,
     private order: OrderService,
+    private promotion:PromotionService,
     private activateRouter: ActivatedRoute
   ) {
     window.scrollTo(0, 0);
     this._id=localStorage.getItem("login");
     this.loadCategory();
     this.loadOrder();
+    this.getPromotion();
     
   }
 
@@ -42,6 +45,19 @@ export class OrdersComponent implements OnInit {
   loadOrder() {
     this.order.loadOrderByUser(this._id).then(result => {
       this.o = result;
+    })
+  }
+
+  
+    
+  promote:any={
+    total_items:0,
+    items:[]
+  }
+  getPromotion(){
+    this.promotion.loadAllPromotion({sp:0,lp:4}).then(result=>{
+      this.promote = result;
+      console.log(this.promote)
     })
   }
 

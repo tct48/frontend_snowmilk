@@ -6,57 +6,74 @@ import { CategoryService } from '../share/service/category.service';
 import { OrderService } from '../share/service/order.service';
 
 @Component({
-  selector: 'app-success',
-  templateUrl: './success.component.html',
-  styleUrls: ['./success.component.css']
+  selector: 'app-success-two',
+  templateUrl: './success-two.component.html',
+  styleUrls: ['./success-two.component.css']
 })
-export class SuccessComponent implements OnInit {
+export class SuccessTwoComponent implements OnInit {
 
   constructor(
     private category: CategoryService,
     private alert: AlertService,
     private order: OrderService,
     private activateRouter: ActivatedRoute,
-    private router:Router
+    private router: Router
   ) {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+
     this.activateRouter.queryParams.forEach(params => {
-      if(!params._id){
-        this.router.navigateByUrl("/home")
-        return;
-      }
-      
-      this._id=params._id;
+      this._id = params._id;
       this.loadOrder();
 
       this.loadCategory();
+  
+      this.loadOrderDT();
     })
+
+
   }
 
-  _id:string;
-  o:any;
+  _id: string;
+  o: any;
 
-  c:any={
-    items:[],
-    total_items:0
+  c: any = {
+    items: [],
+    total_items: 0
   }
 
   ngOnInit(): void {
   }
 
-  loadOrder(){
-    this.order.loadOrderByID(this._id).then(result=>{
+  loadOrder() {
+    this.order.loadOrderByID(this._id).then(result => {
       this.o = result;
+      console.log(result)
     })
   }
 
-  loadCategory(){
-    this.category.loadCategory().then(result=>{
+  item: any = {
+    items: [],
+    total_items: 0
+  }
+
+  amount:number=0;
+
+  loadOrderDT() {
+    this.order.loadOrderDetail(this._id).then(result => {
+      this.item = result;
+      result.items.forEach(element => {
+        this.amount += element.price * element.qty;
+      });
+    })
+  }
+
+  loadCategory() {
+    this.category.loadCategory().then(result => {
       this.c = result;
     })
   }
 
-  goToPayment(){
+  goToPayment() {
     this.router.navigate(['', AppURL.Payment], {
       queryParams: { _id: this._id }
     });

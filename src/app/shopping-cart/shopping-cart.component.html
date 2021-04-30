@@ -45,10 +45,8 @@
                             <h3 style="font-weight: bold;">
                                 โปรโมชั่นสุดพิเศษ
                             </h3>
-                            <img src="http://html.lionode.com/focus/image/banners/LeftBanner.jpg?fbclid=IwAR3xa7eRqCsPDTiJeBhyYLuEDXU4KZIdP1sqsdWSc3eE277L6XRLtqKqQTE"
-                                class="img-thumbnail">
-                            <img src="https://img.his.in.th/cdn-cgi/image/format=auto/his/image/upload/w_640,h_853,c_fill,f_jpg/his/product/p6gLs2NmBtGG0aJNpUaRx0W6Dx0cIqQY/PH804808-a2.jpg"
-                                class="img-thumbnail">
+                            <a *ngFor="let data of promote.items;" class="promote-img" [routerLink]="'/promotion'"
+                                [queryParams]="{_id:data._id}"><img src="{{ data.image }}" class="img-thumbnail"></a>
                         </div>
                     </div>
                 </div>
@@ -63,7 +61,7 @@
                                     <th style="width: 16%;">รูปภาพ</th>
                                     <th style="width: 20%;">สินค้า</th>
                                     <th style="width: 16%;">ประเภท</th>
-                                    <th style="width: 16%;">จำนวน</th>
+                                    <th style="min-width: 100px;">จำนวน</th>
                                     <th style="width: 16%;">ราคาต่อหน่วย</th>
                                     <th style="width: 16%;">รวมทั้งสิ้น</th>
                                 </tr>
@@ -115,13 +113,34 @@
                                 </button>
                                 <label for="">กรอกคูปองส่วนลดของคุณที่นี่</label>
                                 <div class="input-group">
-                                    <input type="text" placeholder="กรอกคูปองส่วนลดของคุณที่นี่" class="form-control">
+                                    <input type="text" [(ngModel)]="coupon" placeholder="กรอกคูปองส่วนลดของคุณที่นี่"
+                                        class="form-control">
                                     <span class="input-group-btn">
-                                        <button class="btn btn-warning">
+                                        <button (click)="onCoupon()" class="btn btn-warning">
                                             ใช้คูปอง
                                         </button>
                                     </span>
                                 </div>
+                                <h5 class="bold" style="margin-top: 15px;">โปรโมชั่นอื่น ๆ</h5>
+                                <input type="checkbox"  [(ngModel)]="isChecked" (change)="checkValue(isChecked?'true':'false')" id=""> โปรโมชั่นซื้อมากแจกแถม
+                                <p *ngIf="promo_condition">
+                                    *ลดทันที {{ promo_condition[0].discount }} % *เมื่อซื้อครบ
+                                    {{ promo_condition[0].type==1?promo_condition[0].condit:promo_condition[0].condit |
+                                    number:'1.2-2' }}
+                                    {{ promo_condition[0].type==1?'ชิ้น':'บาท' }}
+                                    {{ promo_condition[0].max_discount==0?'ไม่มีขั้นต่ำ':'สูงสุดไม่เกิน' }} {{
+                                    promo_condition[0].max_discount>0?promo_condition[0].max_discount:'' }}
+                                    <span *ngIf="promo_condition[0].max_discount>0"> บาท</span>
+                                </p>
+                                <p *ngIf="isChecked">
+                                    • ซื้อครบ 10 ชิ้นขึ้นไปแถม 1 (ลดทันที 300 บาท) <br>
+                                    • ซื้อครบ 15 ชิ้นขึ้นไปแถม 3 (ลดทันที 900 บาท)  <br>
+                                    • ซื้อครบ 20 ชิ้นขึ้นไปแถม 5 (ลดทันที 1500 บาท)  <br>
+                                    <span style="color:maroon;">**ได้รับส่วนลด {{ discount }} บาท</span>
+                                </p>
+                                <p *ngIf="promo_condition" class="text-success">
+                                    ส่วนลดของคุณคือ {{ discount }} บาท
+                                </p>
                             </accordion-group>
                             <accordion-group [isOpen]="true">
                                 <button class="btn btn-link btn-block clearfix" accordion-heading type="button">
@@ -145,13 +164,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">ตำบล</label>
+                                                <label for="">แขวง/ตำบล</label>
                                                 <input formControlName="subdis" type="text" class="form-control">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="">อำเภอ</label>
+                                                <label for="">เขต/อำเภอ</label>
                                                 <input formControlName="dis" type="text" class="form-control">
                                             </div>
                                         </div>
@@ -160,7 +179,10 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="">จังหวัด</label>
-                                                <input formControlName="prov" type="text" class="form-control">
+                                                <!-- <input formControlName="prov" type="text" class="form-control"> -->
+                                                <select (ngModelChange)="onChange($event)" class="form-control" formControlName="prov">
+                                                    <option *ngFor="let data of province;" [value]="data">{{ data }}</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -180,34 +202,36 @@
 
                     </div>
                     <div class="col-md-5">
-                        <table class="table table-cart">
-                            <tbody>
-                                <tr style="text-align: right;">
-                                    <th style="white-space: nowrap;">ยอดรวม:</th>
-                                    <td>
-                                        {{ amount | currency:'THB':'symbol-narrow':'1.2-2' }}
-                                    </td>
-                                </tr>
-                                <tr style="text-align: right;">
-                                    <th style="white-space: nowrap;">
-                                        ค่าจัดส่ง
-                                    </th>
-                                    <td>฿150.00</td>
-                                </tr>
-                                <tr style="text-align: right;">
-                                    <th style="white-space: nowrap;">
-                                        ส่วนลด
-                                    </th>
-                                    <td>฿0.00</td>
-                                </tr>
-                                <tr style="text-align: right;">
-                                    <th style="white-space: nowrap;">
-                                        รวมทั้งสิ้น
-                                    </th>
-                                    <td>{{ amount+150 | currency:'THB':'symbol-narrow':'1.2-2' }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div style="overflow-x:auto!important;">
+                            <table style="width: 100%;">
+                                <tbody>
+                                    <tr style="text-align: right;">
+                                        <th style="white-space: nowrap;">ยอดรวม:</th>
+                                        <td>
+                                            {{ amount | currency:'THB':'symbol-narrow':'1.2-2' }}
+                                        </td>
+                                    </tr>
+                                    <tr style="text-align: right;">
+                                        <th style="white-space: nowrap;">
+                                            ค่าจัดส่ง
+                                        </th>
+                                        <td>{{ shipping | currency:'THB':'symbol-narrow':'1.2-2' }}</td>
+                                    </tr>
+                                    <tr style="text-align: right;">
+                                        <th style="white-space: nowrap;">
+                                            ส่วนลด
+                                        </th>
+                                        <td>{{ discount | currency:'THB' : 'symbol-narrow' :'1.2-2' }}</td>
+                                    </tr>
+                                    <tr style="text-align: right;">
+                                        <th style="white-space: nowrap;">
+                                            รวมทั้งสิ้น
+                                        </th>
+                                        <td>{{ amount+shipping-discount | currency:'THB':'symbol-narrow':'1.2-2' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <button class="btn pull-left" [routerLink]="'/product'" style="background: black;color: white;">

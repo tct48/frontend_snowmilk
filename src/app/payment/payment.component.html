@@ -45,10 +45,8 @@
                             <h3 style="font-weight: bold;">
                                 โปรโมชั่นสุดพิเศษ
                             </h3>
-                            <img src="http://html.lionode.com/focus/image/banners/LeftBanner.jpg?fbclid=IwAR3xa7eRqCsPDTiJeBhyYLuEDXU4KZIdP1sqsdWSc3eE277L6XRLtqKqQTE"
-                                class="img-thumbnail">
-                            <img src="https://img.his.in.th/cdn-cgi/image/format=auto/his/image/upload/w_640,h_853,c_fill,f_jpg/his/product/p6gLs2NmBtGG0aJNpUaRx0W6Dx0cIqQY/PH804808-a2.jpg"
-                                class="img-thumbnail">
+                            <a [routerLink]="'/product'"><img src="./assets/images/promotion.png"
+                                    class="img-thumbnail"></a>
                         </div>
                     </div>
                 </div>
@@ -129,12 +127,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="">วันที่ชำระเงิน:</label>
-                                <input formControlName="dor" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
-                                    [bsConfig]="{ isAnimated: true }">
+                                <input formControlName="dor" type="text" placeholder="Datepicker" class="form-control"
+                                    bsDatepicker [bsConfig]="{ isAnimated: true }">
                             </div>
                             <div class="form-group">
                                 <label for="">เวลาโดยประมาณ:</label>
-                                <timepicker formControlName="time" [(ngModel)]="mytime" [showMeridian]="false"></timepicker>
+                                <timepicker formControlName="time" [(ngModel)]="mytime" [showMeridian]="false">
+                                </timepicker>
                             </div>
                             <div class="form-group">
                                 <label for="">จำนวนเงิน:</label>
@@ -142,12 +141,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="">หลักฐานการโอนเงิน:</label>
-                                <input formControlName="verify" type="file" class="form-control" name="" id="">
+                                <input [formControl]="file" type="file" class="form-control" accept="image/*"
+                                    (change)="fileChange($event)" #inputFile>
+                                <img [src]="imageSrc" *ngIf="imageSrc" class="img-thumbnail w-50 mt-3">
+                                <p *ngIf="result" [innerHtml]="result"></p>
                                 <p class="text-mute">
                                     การแนบหลักฐานจะช่วยทำให้ตรวจสอบได้เร็วขึ้น
                                 </p>
                             </div>
-                        </form>                        
+                        </form>
                     </div>
 
                     <button (click)="onSubmit()" class="btn btn-warning pull-right">

@@ -32,7 +32,8 @@ export class RegisterComponent implements OnInit {
       password:['',Validators.required],
       c_password:['',Validators.required],
       firstname:['',Validators.required],
-      lastname: ['', Validators.required]
+      lastname: ['', Validators.required],
+      email:['',Validators.required]
     })
   }
 
@@ -52,6 +53,11 @@ export class RegisterComponent implements OnInit {
     }
 
     this.member.onRegister(this.form.value).then(result=>{
+      console.log(result);
+      if(result.message=="User is alredy"){
+        this.alert.notify("ไม่สามารถใช้ Username ดังกล่าวได้!");
+        return;
+      }
       this.alert.success("สมัครสมาชิกสำเร็จ");
       this.router.navigateByUrl("/login");
     }).catch(err=>{

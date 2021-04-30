@@ -27,7 +27,7 @@
             <ul class="breadcrumb" style="border-radius: 0px;background:#ebebeb;color:#808080;">
                 <li class="breadcrumb-item"><i class="fas fa-home"></i></li>
                 <li class="breadcrumb-item">ไอศกรีม</li>
-                <li class="breadcrumb-item">Snowwhite</li>
+                <li class="breadcrumb-item">Snowmilk</li>
             </ul>
             <div class="row">
                 <!-- Column Left -->
@@ -47,48 +47,60 @@
                             <h3 style="font-weight: bold;">
                                 โปรโมชั่นสุดพิเศษ
                             </h3>
-                            <img src="http://html.lionode.com/focus/image/banners/LeftBanner.jpg?fbclid=IwAR3xa7eRqCsPDTiJeBhyYLuEDXU4KZIdP1sqsdWSc3eE277L6XRLtqKqQTE"
-                                class="img-thumbnail">
-                            <img src="https://img.his.in.th/cdn-cgi/image/format=auto/his/image/upload/w_640,h_853,c_fill,f_jpg/his/product/p6gLs2NmBtGG0aJNpUaRx0W6Dx0cIqQY/PH804808-a2.jpg"
-                                class="img-thumbnail">
+                            <a *ngFor="let data of promote.items;" class="promote-img" [routerLink]="'/promotion'"
+                                [queryParams]="{_id:data._id}"><img src="{{ data.image }}" class="img-thumbnail"></a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Column Right -->
                 <div class="col-md-9 col-sm-12 col-xs-12">
+
                     <div class="box-product wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h3 class="bold">Snowmilk Gelato</h3>
                         <p>
-                            My girl, my girl, don't lie to me Tell me where did you sleep last night In the pines, in
-                            the pines Where the sun don't ever shine I would shiver the whole night through My girl, my
-                            girl, where will you go I'm going where the cold wind blows In the pines, in the pines Where
-                            the sun don't ever shine I would shiver the whole night through.
+                            <span style="color:red;">****</span>
+                            ถ้าต้องการติดต่อราคาส่ง และ OEM ให้ท่านสามารถส่งข้อมูลที่หน้าติดต่อเรา
+                            แล้วทางเราจะติดต่อหาคุณให้เร็วที่สุด ขอบคุณค่ะ
                         </p>
                         <p class="text-right">
                             <i class="fas fa-shopping-cart"></i>
                             {{ cart }} รายการ
                         </p>
                         <hr>
-                        <div class="row">
-                            <div *ngFor="let data of p.items;let i = index;" class="col-md-3 mb-2 secondary">
-                                <img src="{{ data.image }}" class="wifi" alt="">
-                                <div class="middle">
-                                    <a (click)="goToProductDetailOf(data._id)" class="text">
-                                        <i class="fas fa-shopping-cart"></i>
-                                        สั่งเลย
-                                    </a>
+                        <div *ngFor="let cate of c.items;let i = index;">
+                            <h1 class="bold"
+                                style="color:#fdcb03;background-color:black;padding:5px 16px;border-radius:8px;margin:15px 0px;">
+                                {{ cate.name }}
+                            </h1>
+                            <div class="row">
+                                <div *ngFor="let data of p.items;">
+                                    <div *ngIf="data.category_id==cate._id" class="col-md-4 secondary" style="margin:15px 0px;">
+                                        <div class="shadow33" >
+                                            <img src="{{ data.image }}" class="wifi" alt="">
+                                            <div class="middle">
+                                                <a (click)="goToProductDetailOf(data._id)" class="text">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                    สั่งเลย
+                                                </a>
+                                            </div>
+                                            <div style="padding:15px">
+                                                <h4>{{ data.name }}</h4>
+                                                <p class="bold">{{ data.price | currency:'THB':'symbol-narrow':'1.2-2' }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h4>{{ data.name }}</h4>
-                                <p class="bold">{{ data.price | currency:'THB':'symbol-narrow':'1.2-2' }}</p>
+
                             </div>
+
                         </div>
-                        <div class="text-center" style="margin-top: 20px;">
+                        <!-- <div class="text-center" style="margin-top: 20px;">
                             <button *ngIf="p.items.length<p.total_items"
                                 class="btn btn-warning hvr-underline-from-center" (click)="onLoadMore()">
                                 โหลดข้อมูลเพิ่มเติม
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

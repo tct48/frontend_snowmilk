@@ -20,9 +20,9 @@ export class AuthNavBarComponent implements OnInit {
   ) { 
     this.checkLogin();
     this.cart = localStorage.getItem("cart");
-    this.activateRouter.queryParams.forEach(element=>{
-      this.r = element.r;
-    })
+    // this.activateRouter.queryParams.forEach(element=>{
+    //   this.r = element.r;
+    // })
   }
 
   name:string;
@@ -33,6 +33,11 @@ export class AuthNavBarComponent implements OnInit {
 
   login:boolean = false;
   r:string;
+
+  setActive(text){
+    this.r=text;
+    console.log(this.r);
+  }
 
   checkLogin(){
     if(localStorage.getItem("login")){

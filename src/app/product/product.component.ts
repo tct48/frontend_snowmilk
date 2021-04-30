@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppURL } from '../app.url';
 import { CategoryService } from '../share/service/category.service';
 import { IOption, ProductService } from '../share/service/product.service';
+import { PromotionService } from '../share/service/promotion.service';
 
 @Component({
   selector: 'app-product',
@@ -15,6 +16,7 @@ export class ProductComponent implements OnInit {
     private category: CategoryService,
     private product: ProductService,
     private router: Router,
+    private promotion: PromotionService,
     private activateRouter: ActivatedRoute,
   ) {
     window.scrollTo(0, 0);
@@ -28,6 +30,7 @@ export class ProductComponent implements OnInit {
       }
       this.loadProduct(this.option);
     });
+    this.getPromotion();
   }
 
   ngOnInit(): void {
@@ -58,6 +61,7 @@ export class ProductComponent implements OnInit {
   loadProduct(option: IOption) {
     this.product.loadAllProduct(this.option).then(result => {
       this.p = result;
+      console.log(result)
     })
   }
 
@@ -67,6 +71,18 @@ export class ProductComponent implements OnInit {
       result.items.forEach(element => {
         this.p.items.push(element);
       });
+    })
+  }
+
+  
+  promote:any={
+    total_items:0,
+    items:[]
+  }
+  getPromotion(){
+    this.promotion.loadAllPromotion({sp:0,lp:4}).then(result=>{
+      this.promote = result;
+      console.log(this.promote)
     })
   }
 

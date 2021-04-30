@@ -7,6 +7,7 @@ import { AlertService } from '../share/alert.service';
 import { CategoryService } from '../share/service/category.service';
 import { IOdetail, IOrder, OrderService } from '../share/service/order.service';
 import { ProductService } from '../share/service/product.service';
+import { PromotionService } from '../share/service/promotion.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -21,11 +22,14 @@ export class ShoppingCartComponent implements OnInit {
     private product: ProductService,
     private alert: AlertService,
     private order: OrderService,
+    private promotion: PromotionService,
     private router: Router
   ) {
     this.loadCate();
     this.loadItem();
     this.initialForm();
+    this.loadProvince();
+    this.getPromotion();
   }
 
   ngOnInit(): void {
@@ -59,6 +63,36 @@ export class ShoppingCartComponent implements OnInit {
     })
   }
 
+
+  promote: any = {
+    total_items: 0,
+    items: []
+  }
+  getPromotion() {
+    this.promotion.loadAllPromotion({ sp: 0, lp: 4 }).then(result => {
+      this.promote = result;
+      console.log(this.promote)
+    })
+  }
+
+  isChecked:boolean=false;
+  checkValue(event: any) {
+    if(event=="true"){
+        this.isChecked=true;
+        if(this.qty>=10 && this.qty<15){
+          this.discount=300;
+        }else if(this.qty>=15 && this.qty<20){
+          this.discount=900;
+        }else if(this.qty>=20){
+          this.discount=1500;
+        }else{
+          this.alert.notify("ไม่ตรงตามเงื่อนไขการซื้อสินค้า")
+        }
+    }else{
+      this.isChecked=false;
+    }
+  }
+
   loadCate() {
     this.category.loadCategory().then(result => {
       this.c = result;
@@ -66,11 +100,13 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   model = [];
+  coupon: string;
+  promo_condition: any;
   loadItem() {
     this.product.loadCart(localStorage.getItem("login")).then(result => {
       this.item = result;
       this.item.items.forEach(element => {
-        this.model.push(element._id)
+        this.model.push(element)
       });
 
     })
@@ -80,6 +116,16 @@ export class ShoppingCartComponent implements OnInit {
     this.amount = 0;
     for (var i = 0; i < this.qty.length; i++) {
       this.amount = parseInt(this.amount) + parseInt(this.item.items[i].price) * parseInt(this.qty[i]);
+    }
+  }
+
+  shipping: number = 0;
+
+  onChange(value) {
+    if (value == "กรุงเทพมหานคร") {
+      this.shipping = 150;
+    } else {
+      this.shipping = 250;
     }
   }
 
@@ -94,35 +140,152 @@ export class ShoppingCartComponent implements OnInit {
       return;
     }
 
+
     var obj: IOrder = {
       user: parseInt(localStorage.getItem("login")),
-      total: this.amount
+      discount: this.discount,
+      total: this.amount + this.shipping - this.discount
     };
+
+    for (var i = 0; i < this.model.length; i++) {
+      this.model[i].qty = this.qty[i];
+    }
 
 
     this.order.insertOrder(obj).then(result => {
       var orders = result.orders;
       this.form.controls["orders"].setValue(orders);
+      console.log(result)
       this.order.insertOrderDetail(this.model, orders).then(result => {
+        console.log(result)
         // เพิ่มข้อมูลรายละเอียดใบเสร็จสำเร็จ
         this.order.deleteCart(localStorage.getItem("login")).then(result => {
           this.order.insertAddress(this.form.value).then(result => {
             this.alert.success("ดำเนินการเสร็จสิ้นขั้นสุดท้าย!");
-            setInterval(() => {
-              this.router.navigate(['', AppURL.Success], {
-                queryParams: { _id: orders }
-              });
-            }, 1500);
+            this.router.navigate(['', AppURL.Success], {
+              queryParams: { _id: orders }
+            });
           })
         })
       })
     })
   }
 
-  onRemove(_id:string){
-    this.order.removeItemFromCartByID(_id).then(result=>{
+
+  discount: number = 0;
+  onCoupon() {
+    this.promotion.loadCoupon(this.coupon).then(result => {
+      this.promo_condition = result.items;
+      console.log(result)
+      if (result.total_items == 1) {
+        if (this.promo_condition[0].type == 2) {
+          if (this.amount >= this.promo_condition[0].condit) {
+            this.discount = this.amount * this.promo_condition[0].discount / 100;
+            if (this.discount > this.promo_condition[0].max_discount) {
+              this.discount = this.promo_condition[0].max_discount;
+            }
+          }
+        } else if (this.promo_condition[0].type == 1) {
+          if (this.qty[0] >= this.promo_condition[0].condit) {
+            this.discount = this.amount / 2;
+            if (this.discount > this.promo_condition[0].max_discount) {
+              this.discount = this.promo_condition[0].max_discount;
+            }
+          }
+        }
+      } else {
+        this.alert.notify("รหัสคูปองไม่ถูกต้อง หรือหมดอายุแล้ว")
+      }
+    })
+  }
+
+  onRemove(_id: string) {
+    this.order.removeItemFromCartByID(_id).then(result => {
       this.loadItem();
     })
+  }
+
+  province: any;
+  loadProvince() {
+    this.province = [
+      "กระบี่",
+      "กรุงเทพมหานคร",
+      "กาญจนบุรี",
+      "กาฬสินธุ์",
+      "กำแพงเพชร",
+      "ขอนแก่น",
+      "จันทบุรี",
+      "ฉะเชิงเทรา",
+      "ชลบุรี",
+      "ชัยนาท",
+      "ชัยภูมิ",
+      "ชุมพร",
+      "เชียงราย",
+      "เชียงใหม่",
+      "ตรัง",
+      "ตราด",
+      "ตาก",
+      "นครนายก",
+      "นครปฐม",
+      "นครพนม",
+      "นครราชสีมา",
+      "นครศรีธรรมราช",
+      "นครสวรรค์",
+      "นนทบุรี",
+      "นราธิวาส",
+      "น่าน",
+      "บึงกาฬ",
+      "บุรีรัมย์",
+      "ปทุมธานี",
+      "ประจวบคีรีขันธ์",
+      "ปราจีนบุรี",
+      "ปัตตานี",
+      "พระนครศรีอยุธยา",
+      "พะเยา",
+      "พังงา",
+      "พัทลุง",
+      "พิจิตร",
+      "พิษณุโลก",
+      "เพชรบุรี",
+      "เพชรบูรณ์",
+      "แพร่",
+      "ภูเก็ต",
+      "มหาสารคาม",
+      "มุกดาหาร",
+      "แม่ฮ่องสอน",
+      "ยโสธร",
+      "ยะลา",
+      "ร้อยเอ็ด",
+      "ระนอง",
+      "ระยอง",
+      "ราชบุรี",
+      "ลพบุรี",
+      "ลำปาง",
+      "ลำพูน",
+      "เลย",
+      "ศรีสะเกษ",
+      "สกลนคร",
+      "สงขลา",
+      "สตูล",
+      "สมุทรปราการ",
+      "สมุทรสงคราม",
+      "สมุทรสาคร",
+      "สระแก้ว",
+      "สระบุรี",
+      "สิงห์บุรี",
+      "สุโขทัย",
+      "สุพรรณบุรี",
+      "สุราษฎร์ธานี",
+      "สุรินทร์",
+      "หนองคาย",
+      "หนองบัวลำภู",
+      "อ่างทอง",
+      "อำนาจเจริญ",
+      "อุดรธานี",
+      "อุตรดิตถ์",
+      "อุทัยธานี",
+      "อุบลราชธานี"
+    ]
   }
 }
 

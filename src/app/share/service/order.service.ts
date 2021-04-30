@@ -14,6 +14,7 @@ export class OrderService {
   ) { }
 
   insertOrder(model:IOrder){
+    console.log(model)
     return this.http.requestPost("orders/_post.php", model)
     .toPromise() as Promise<any>
   }
@@ -46,6 +47,12 @@ export class OrderService {
       .toPromise() as Promise<any>;
   }
 
+  loadOrderDetail(_id:string){
+    let url=`orders/_get_success.php?_id=${_id}`;
+    return this.http.requestGet(url,this.authen.getAuthenticated())
+      .toPromise() as Promise<any>;
+  }
+
   deleteCart(user:any){
     return this.http.requestDelete(`orders/_delete_cart.php?user=${user}`)
       .toPromise() as Promise<any>;
@@ -54,6 +61,7 @@ export class OrderService {
 
 export interface IOrder{
   user:number,
+  discount:number,
   total:number
 }
 

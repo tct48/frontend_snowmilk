@@ -21,7 +21,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SuccessComponent } from './success/success.component';
 import { PaymentComponent } from './payment/payment.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AlertService } from './share/alert.service';
@@ -32,6 +31,14 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
 import { PromotionComponent } from './promotion/promotion.component';
+import { SuccessTwoComponent } from './success-two/success-two.component';
+import { OemComponent } from './oem/oem.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { AboutComponent } from './about/about.component';
+import { ScollPromotionComponent } from './scoll-promotion/scoll-promotion.component';
+import { PageScrollService } from 'ng2-page-scroll';
 
 const OtherComponent = [
   FormsModule,
@@ -40,6 +47,7 @@ const OtherComponent = [
   BrowserAnimationsModule,
   // ButtonsModule.forRoot(),
   TooltipModule.forRoot(),
+  CollapseModule.forRoot(),
   AccordionModule.forRoot(),
   BsDatepickerModule.forRoot(),
   TimepickerModule.forRoot()
@@ -56,11 +64,16 @@ const OtherComponent = [
     ProductComponent,
     ProductDetailComponent,
     ShoppingCartComponent,
-    SuccessComponent,
     PaymentComponent,
     OrdersComponent,
     DateAgoPipe,
-    PromotionComponent
+    PromotionComponent,
+    SuccessTwoComponent,
+    OemComponent,
+    ChangePasswordComponent,
+    ForgetPasswordComponent,
+    AboutComponent,
+    ScollPromotionComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +84,7 @@ const OtherComponent = [
   providers: [
     AlertService,
     DatePipe,
+    PageScrollService,
     {
       provide: LocationStrategy, useClass: HashLocationStrategy
     }

@@ -1,38 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+import { Component, ElementRef, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { PageScrollInstance, PageScrollService } from 'ng2-page-scroll';
 import { AppURL } from '../app.url';
 import { AlertService } from '../share/alert.service';
 import { IOption, ProductService } from '../share/service/product.service';
 import { PromotionService } from '../share/service/promotion.service';
 
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
-})
-export class HomeComponent implements OnInit {
 
+@Component({
+  selector: 'app-about',
+  templateUrl: './about.component.html',
+  styleUrls: ['./about.component.css']
+})
+export class AboutComponent implements OnInit {
+  @ViewChild("about") MyProp: ElementRef;
   constructor(
     private product: ProductService,
-    private alert: AlertService,
     private router: Router,
-    private activateRouter: ActivatedRoute,
-    private promotion:PromotionService
+    private promotion: PromotionService,
   ) {
-    window.scrollTo(0, 0);
-    this.loadProductTop()
+    this.loadProductTop();
     this.loadBestSell();
 
     this.loadPromotion();
-    // let el = document.getElementById('navbar');
-    // el.scrollTop = el.scrollHeight;
   }
-
   r: string;
 
-  ngOnInit(): void {
+  ngOnInit() {
+    setTimeout(() => {
+      this.MyProp.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" })
+    }, 500);
   }
-
+ 
   top_product: any = {
     items: [],
     total_items: 0
@@ -48,18 +48,18 @@ export class HomeComponent implements OnInit {
       this.top_product = result;
     })
   }
-  option:IOption={
-    sp:0,
-    lp:4
+  option: IOption = {
+    sp: 0,
+    lp: 4
   }
 
-  promote:any = {
-    items:[],
-    total_items:0
+  promote: any = {
+    items: [],
+    total_items: 0
   }
 
-  loadPromotion(){
-    this.promotion.loadAllPromotion(this.option).then(result=>{
+  loadPromotion() {
+    this.promotion.loadAllPromotion(this.option).then(result => {
       this.promote = result;
       console.log("*******************************")
       console.log(result);
@@ -81,3 +81,5 @@ export class HomeComponent implements OnInit {
   }
 
 }
+
+

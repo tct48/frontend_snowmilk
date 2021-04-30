@@ -1,0 +1,73 @@
+<app-auth-content>
+    <div id="register" class="full-screen-mode parallax pad-top-100 pad-bottom-100"
+        style="background-color: rgba(0, 0, 0, 0.9);">
+        <div class="container pr">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="banner-static">
+                    <div class="banner-text">
+                        <div class="banner-cell">
+                            <h1 style="font-weight: bold;">สนใจร่วมมาเป็นส่วนหนึ่งกับเรา</h1>
+                            <h2 style="font-weight: bold;"> ขอบคุณที่รัก และ ไว้ใจเราเสมอ..</h2>
+                            <p class="kanit">OEM</p>
+                        </div>
+                        <!-- end banner-cell -->
+                    </div>
+                    <!-- end banner-text -->
+                </div>
+                <!-- end banner-static -->
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end container -->
+    </div>
+
+    <div class="about-main pad-top-100 pad-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <div class="text-center">
+                            <h1 class="bold" style="color: #fdcb03;">
+                                สนใจร่วมธุรกิจกับเรา
+                            </h1>
+                            <p>:: กรุณากรอกข้อมูลติดต่อกลับด้านล่าง ::</p>
+                        </div>
+                        <form [formGroup]="form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">ชื่อจริง</label>
+                                        <input type="text" formControlName="firstname" class="form-control" placeholder="ชื่อจริง">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">นามสกุล</label>
+                                        <input type="text" formControlName="lastname" class="form-control" placeholder="นามสกุล">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">เบอร์โทรศัพท์</label>
+                                <input type="text" formControlName="phone" class="form-control" placeholder="เบอร์โทรศัพท์">
+                            </div>
+                            <div class="form-group">
+                                <i class="fab fa-line"></i> ไอดีไลน์
+                                <input type="text" formControlName="text" class="form-control" placeholder="ไอดีไลน์">
+                            </div>
+                            <div class="form-group">
+                                <label for="">ที่อยู่</label>
+                                <textarea formControlName="address" class="form-control" cols="30" rows="10"></textarea>
+                            </div>
+                            <button (click)="onSubmit()" class="btn btn-warning">
+                                ส่งข้อมูล
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-auth-content>
+<p>oem works!</p>

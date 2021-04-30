@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppURL } from '../app.url';
+import { PromotionComponent } from '../promotion/promotion.component';
 import { AlertService } from '../share/alert.service';
 import { ProductService } from '../share/service/product.service';
+import { PromotionService } from '../share/service/promotion.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -27,14 +29,14 @@ export class ProductDetailComponent implements OnInit {
       }
       this.loadRandomProduct();
 
-      this.product.updateView(this._id).then(result=>{
+      this.product.updateView(this._id).then(result => {
       });
 
       this.getCart();
 
       this.product.loadProductByID(this._id).then(result => {
         this.p = result;
-
+        this.content = this.p.content;
         this.name = this.p.name;
         this.category = this.p.category;
         this.image = this.p.image;
@@ -56,8 +58,9 @@ export class ProductDetailComponent implements OnInit {
   price: string;
   taste: string;
   cart: string;
+  content: string;
 
-  userid:string;
+  userid: string;
 
   rand_product: any = {
     items: [],
@@ -84,7 +87,7 @@ export class ProductDetailComponent implements OnInit {
       this.alert.success("เพิ่มสินค้าลงตะกร้าสำเร็จ!");
       setInterval(() => {
         window.location.reload();
-      },1500);
+      }, 1500);
     })
   }
 
@@ -100,6 +103,7 @@ export class ProductDetailComponent implements OnInit {
       this.cart = result.cart;
     })
   }
+  isCollapsed = true;
 }
 
 export interface IProduct {
@@ -108,5 +112,6 @@ export interface IProduct {
   category: string,
   taste: string,
   image: string,
-  price: string
+  price: string,
+  content: string
 }

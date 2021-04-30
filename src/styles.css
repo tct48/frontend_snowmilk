@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+.footer-box-c p{
+    font-family: 'Kanit', sans-serif !important;
+}
+
+.hover:hover{
+    cursor:pointer!important;
+}

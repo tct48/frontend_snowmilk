@@ -18,6 +18,17 @@ export class MemberService {
       .toPromise() as Promise<any>
   }
 
+  onChangePassword(model: any) {
+    console.log(model)
+    return this.http.requestPost("user/_post_change_password.php", model)
+      .toPromise() as Promise<any>
+  }
+
+  onForgetPassword(model:any){
+    return this.http.requestPost("user/_post_forget_password.php", model)
+      .toPromise() as Promise<any>
+  }
+
   onRegister(model: any) {
     return this.http.requestPost("user/_post.php", model)
       .toPromise() as Promise<any>

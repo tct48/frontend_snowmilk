@@ -46,7 +46,7 @@ export class SigninComponent implements OnInit {
         this.alert.notify("เกิดข้อผิดพลาดบางอย่างกรุณาแจ้งผู้จัดการ");
         return;
       }
-
+      console.log(result)
       if (result.total_items == 1 && result.items[0]._id!=null) {
         this.authen.setAuthenticated("accessKey",result.items[0]);
         this.router.navigateByUrl("/home");
@@ -55,6 +55,10 @@ export class SigninComponent implements OnInit {
       }
     }).catch(err => {
     })
+  }
+
+  forgetPassword(){
+    this.alert.success("รหัสผ่านใหม่ส่งไปที่อีเมล์เรียบร้อยแล้ว!");
   }
 
 }

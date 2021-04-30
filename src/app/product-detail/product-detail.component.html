@@ -22,7 +22,7 @@
     </div>
 
 
-    <div  #target  style="margin:40px 0px;" class="pad-bottom-100">
+    <div #target style="margin:40px 0px;" class="pad-bottom-100">
         <div class="container">
             <ul class="breadcrumb" style="border-radius: 0px;background:#ebebeb;color:#808080;">
                 <li><i class="fas fa-home"></i></li>
@@ -49,8 +49,8 @@
                     <div class="wow fadeIn box-product-detail" data-wow-duration="1s" data-wow-delay="0.1s">
                         <h3 class="bold" style="font-size: 30pt;margin-bottom: 12px;">{{ name }}</h3>
                         <p>
-                            อร่อยดับร้อนไปกับไอศกรีมรส {{ name }} ท็อปด้วยเม็ดมะม่วง และพุดดิ้งข้าวเหนียวดำ
-                            อร่อยละมุนทุกคำ รับประกันความฟิน
+                            อร่อยดับร้อนไปกับไอศกรีมรส {{ name }} <br>
+                            {{ content }}
                         </p>
                         <h3 class="bold" style="margin-top: 30px;margin-bottom: 10px;">รายละเอียดสินค้า</h3>
                         <ul style="margin-bottom:30px;">
@@ -59,7 +59,8 @@
                                     Homemade </p>
                             </li>
                             <li>
-                                <p><i class="fas fa-check-circle" style="margin:0px 10px;color:#fdcb03;"></i>รสชาติ {{ taste }}</p>
+                                <p><i class="fas fa-check-circle" style="margin:0px 10px;color:#fdcb03;"></i>รสชาติ {{
+                                    taste }}</p>
                             </li>
                         </ul>
                         <p class="tag-price" style="margin-bottom: 30px;">
@@ -78,13 +79,20 @@
                         <br>
                         <div class="btn-group">
                             <button class="btn">
-                                <i class="fab fa-facebook-square"></i>
+                                <a href="https://www.facebook.com/SnowmilkGelato-100458305445574" target="_blank">
+                                    <i class="fab fa-facebook-square"></i>
+                                </a>
                             </button>
                             <button class="btn">
-                                <i class="fab fa-facebook-messenger"></i>
+                                <a href="https://www.facebook.com/messages/t/100458305445574" target="_blank">
+                                    <i class="fab fa-facebook-messenger"></i>
+                                </a>
                             </button>
                             <button class="btn">
-                                <i class="fab fa-line"></i>
+                                <a href="https://liff.line.me/1645278921-kWRPP32q?openerPlatform=native&openerKey=urlSchema%3Aexternal&accountId=293ykvhw#mst_challenge=Dg4h1QHzl2Rl-GDsY9LZiOBdJEf0Mxk13KWdiWwtLhs"
+                                    target="_blank">
+                                    <i class="fab fa-line"></i>
+                                </a>
                             </button>
                         </div>
                     </div>
@@ -97,7 +105,8 @@
             <!-- Other Product -->
             <div class="row">
                 <div *ngFor="let data of rand_product.items;" class="col-md-3">
-                    <div (click)="changeProduct(data._id,target)" class="card-rand shadow33" tooltip="ดูสินค้า" placement="bottom">
+                    <div (click)="changeProduct(data._id,target)" class="card-rand shadow33" tooltip="ดูสินค้า"
+                        placement="bottom">
                         <img src="{{ data.image }}" alt="" style="width: 100%;object-fit: cover;">
                         <div class="card-body">
                             <h3 class="bold">{{ data.name }}</h3>

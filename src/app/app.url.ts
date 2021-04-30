@@ -8,5 +8,10 @@ export const AppURL = {
     Success:'success',
     Payment:'payment',
     Orders:'orders',
-    Promotion:'promotion'
+    OEM:'oem',
+    Promotion:'promotion',
+    Changepassword:'change-password',
+    ForgetPassword:'forget-password',
+    PreviewPromotion:'preview-promotion',
+    About:'about'
 }

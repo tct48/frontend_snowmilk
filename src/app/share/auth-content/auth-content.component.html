@@ -15,7 +15,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="footer-box-a">
                             <h3>เกี่ยวกับเรา</h3>
-                            <p>Snowmilk Gelato ไอศกรีมโฮมเมดระดับพรีเมียม รสชาติเข้มข้นถูกปากคนไทย</p>
+                            <p class="kanit">Snowmilk Gelato ไอศกรีมโฮมเมดระดับพรีเมียม รสชาติเข้มข้นถูกปากคนไทย</p>
                             <ul class="socials-box footer-socials pull-left">
                                 <li>
                                     <a href="#">
@@ -32,10 +32,7 @@
                         <div class="footer-box-b">
                             <h3>สินค้าใหม่</h3>
                             <ul>
-                                <li><a href="#">Italian Bomba Sandwich</a></li>
-                                <li><a href="#">Double Dose of Pork Belly</a></li>
-                                <li><a href="#">Spicy Thai Noodles</a></li>
-                                <li><a href="#">Triple Truffle Trotters</a></li>
+                                <li *ngFor="let data of top_product.items;"><a [routerLink]="'/product-detail'" [queryParams]="{id:data._id}">{{ data.name }}</a></li>
                             </ul>
                         </div>
                         <!-- end footer-box-b -->
