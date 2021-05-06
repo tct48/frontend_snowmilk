@@ -24,6 +24,7 @@ export class AboutComponent implements OnInit {
     this.loadBestSell();
 
     this.loadPromotion();
+    this.loadProduct();
   }
   r: string;
 
@@ -41,7 +42,19 @@ export class AboutComponent implements OnInit {
   best_seller: any = {
     items: [],
     total_items: 0
+  }  
+  
+  p:any={
+    items:[],
+    total_items:0
   }
+
+  loadProduct(){
+    this.product.loadAllProduct(this.option).then(result=>{
+      this.p = result;
+    });
+  }
+
 
   loadProductTop() {
     this.product.loadTopSix().then(result => {

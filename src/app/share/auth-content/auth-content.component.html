@@ -3,10 +3,14 @@
 <!-- fix bottom left -->
 <span id="shang-chi" class="shadow33">
     ติดต่อเรา<br>
-    <a href="https://www.facebook.com/SnowmilkGelato-100458305445574" class="facebook"><i class="fab fa-facebook-square"></i> facebook</a><br>
-    <a href="https://www.facebook.com/messages/t/100458305445574" class="facebook"><i class="fab fa-facebook-messenger"></i> messenger</a><br>
-    <a href="https://liff.line.me/1645278921-kWRPP32q?openerPlatform=native&openerKey=urlSchema%3Aexternal&accountId=293ykvhw#mst_challenge=Dg4h1QHzl2Rl-GDsY9LZiOBdJEf0Mxk13KWdiWwtLhs" class="line"><i class="fab fa-line"></i> line@</a><br>
-    <i class="fas fa-phone-volume"></i> โทร 094-442-8897
+    <div style="font-size:30px;">
+        <a href="https://www.facebook.com/SnowmilkGelato-100458305445574" target="_blank" class="facebook"><i
+                class="fab fa-facebook-square"></i></a>
+        <a href="https://www.facebook.com/messages/t/100458305445574" style="margin:0px 10px;" target="_blank"
+            class="facebook"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="https://liff.line.me/1645278921-kWRPP32q?openerPlatform=native&openerKey=urlSchema%3Aexternal&accountId=293ykvhw#mst_challenge=Dg4h1QHzl2Rl-GDsY9LZiOBdJEf0Mxk13KWdiWwtLhs"
+            target="_blank" class="line"><i class="fab fa-line"></i></a><br>
+    </div>
 </span>
 
 <!-- footer -->
@@ -41,7 +45,8 @@
                         <div class="footer-box-b">
                             <h3>สินค้าใหม่</h3>
                             <ul>
-                                <li *ngFor="let data of top_product.items;"><a [routerLink]="'/product-detail'" [queryParams]="{id:data._id}">{{ data.name }}</a></li>
+                                <li *ngFor="let data of top_product.items;"><a [routerLink]="'/product-detail'"
+                                        [queryParams]="{id:data._id}">{{ data.name }}</a></li>
                             </ul>
                         </div>
                         <!-- end footer-box-b -->
@@ -91,7 +96,8 @@
                             Privacy Policy
                             <span style="margin:0px 15px;"></span>
                             &copy; 2021 TCT29 Studio
-                            <i class="fas fa-heart" style="color: #ff005c;-webkit-text-stroke-width: 1.5px;-webkit-text-stroke-color: black;"></i>
+                            <i class="fas fa-heart"
+                                style="color: #ff005c;-webkit-text-stroke-width: 1.5px;-webkit-text-stroke-color: black;"></i>
                         </h6>
                     </div>
                 </div>

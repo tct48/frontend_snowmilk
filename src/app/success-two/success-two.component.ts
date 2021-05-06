@@ -4,6 +4,7 @@ import { AppURL } from '../app.url';
 import { AlertService } from '../share/alert.service';
 import { CategoryService } from '../share/service/category.service';
 import { OrderService } from '../share/service/order.service';
+import { PromotionService } from '../share/service/promotion.service';
 
 @Component({
   selector: 'app-success-two',
@@ -16,6 +17,7 @@ export class SuccessTwoComponent implements OnInit {
     private category: CategoryService,
     private alert: AlertService,
     private order: OrderService,
+    private promotion: PromotionService,
     private activateRouter: ActivatedRoute,
     private router: Router
   ) {
@@ -28,6 +30,7 @@ export class SuccessTwoComponent implements OnInit {
       this.loadCategory();
   
       this.loadOrderDT();
+      this.getPromotion();
     })
 
 
@@ -47,7 +50,8 @@ export class SuccessTwoComponent implements OnInit {
   loadOrder() {
     this.order.loadOrderByID(this._id).then(result => {
       this.o = result;
-      console.log(result)
+      this.supply = Number(this.o.total) + Number(this.o.discount);
+      console.log(this.supply)
     })
   }
 
@@ -57,6 +61,18 @@ export class SuccessTwoComponent implements OnInit {
   }
 
   amount:number=0;
+
+      
+  promote:any={
+    total_items:0,
+    items:[]
+  }
+  getPromotion(){
+    this.promotion.loadAllPromotion({sp:0,lp:4}).then(result=>{
+      this.promote = result;
+      console.log(this.promote)
+    })
+  }
 
   loadOrderDT() {
     this.order.loadOrderDetail(this._id).then(result => {
@@ -72,7 +88,7 @@ export class SuccessTwoComponent implements OnInit {
       this.c = result;
     })
   }
-
+  supply:number=0;
   goToPayment() {
     this.router.navigate(['', AppURL.Payment], {
       queryParams: { _id: this._id }

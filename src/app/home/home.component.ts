@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
     this.loadBestSell();
 
     this.loadPromotion();
+    this.loadProduct();
     // let el = document.getElementById('navbar');
     // el.scrollTop = el.scrollHeight;
   }
@@ -56,6 +57,17 @@ export class HomeComponent implements OnInit {
   promote:any = {
     items:[],
     total_items:0
+  }
+
+  p:any={
+    items:[],
+    total_items:0
+  }
+
+  loadProduct(){
+    this.product.loadAllProduct(this.option).then(result=>{
+      this.p = result;
+    });
   }
 
   loadPromotion(){

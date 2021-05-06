@@ -75,21 +75,26 @@ export class ShoppingCartComponent implements OnInit {
     })
   }
 
-  isChecked:boolean=false;
+  isChecked: boolean = false;
   checkValue(event: any) {
-    if(event=="true"){
-        this.isChecked=true;
-        if(this.qty>=10 && this.qty<15){
-          this.discount=300;
-        }else if(this.qty>=15 && this.qty<20){
-          this.discount=900;
-        }else if(this.qty>=20){
-          this.discount=1500;
-        }else{
-          this.alert.notify("ไม่ตรงตามเงื่อนไขการซื้อสินค้า")
-        }
-    }else{
-      this.isChecked=false;
+    var qty = 0;
+    for (var i = 0; i < this.qty.length; i++) {
+      if (this.item.items[i].category == "Snowmilk Gelato")
+        qty += this.qty[i];
+    }
+    if (event == "true") {
+      this.isChecked = true;
+      if (qty >= 10 && qty < 15) {
+        this.discount = 60;
+      } else if (qty >= 15 && qty < 20) {
+        this.discount = 180;
+      } else if (qty >= 20) {
+        this.discount = 300;
+      } else {
+        this.alert.notify("ไม่ตรงตามเงื่อนไขการซื้อสินค้า")
+      }
+    } else {
+      this.isChecked = false;
     }
   }
 
@@ -186,15 +191,19 @@ export class ShoppingCartComponent implements OnInit {
             }
           }
         } else if (this.promo_condition[0].type == 1) {
-          if (this.qty[0] >= this.promo_condition[0].condit) {
-            this.discount = this.amount / 2;
-            if (this.discount > this.promo_condition[0].max_discount && this.promo_condition[0].max_discount!=0) {
+          var qty = 0;
+          for (var i = 0; i < this.qty.length; i++) {
+            qty += this.qty[i];
+          }
+          if (qty >= this.promo_condition[0].condit) {
+            this.discount = this.amount * this.promo_condition[0].discount/100;
+            if (this.discount > this.promo_condition[0].max_discount && this.promo_condition[0].max_discount != 0) {
               this.discount = this.promo_condition[0].max_discount;
-            }else if(this.promo_condition[0].max_discount==0){
-              this.discount = this.amount*this.promo_condition[0].discount/100;
+            } else if (this.promo_condition[0].max_discount == 0) {
+              this.discount = this.amount * this.promo_condition[0].discount / 100;
             }
-          }else{
-            this.discount=0;
+          } else {
+            this.discount = 0;
           }
         }
       } else {

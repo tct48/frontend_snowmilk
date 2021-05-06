@@ -45,8 +45,8 @@
                             <h3 style="font-weight: bold;">
                                 โปรโมชั่นสุดพิเศษ
                             </h3>
-                            <a [routerLink]="'/product'"><img src="./assets/images/promotion.png"
-                                    class="img-thumbnail"></a>
+                            <a *ngFor="let data of promote.items;" class="promote-img" [routerLink]="'/promotion'"
+                                [queryParams]="{_id:data._id}"><img src="{{ data.image }}" class="img-thumbnail"></a>
                         </div>
                     </div>
                 </div>

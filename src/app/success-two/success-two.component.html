@@ -45,8 +45,8 @@
                             <h3 style="font-weight: bold;">
                                 โปรโมชั่นสุดพิเศษ
                             </h3>
-                            <a [routerLink]="'/product'"><img src="./assets/images/promotion.png"
-                                    class="img-thumbnail"></a>
+                            <a *ngFor="let data of promote.items;" class="promote-img" [routerLink]="'/promotion'"
+                                [queryParams]="{_id:data._id}"><img src="{{ data.image }}" class="img-thumbnail"></a>
                         </div>
                     </div>
                 </div>
@@ -157,8 +157,8 @@
                                             <td colspan="5">
                                                 ส่วนลด
                                             </td>
-                                            <td class="text-right">
-                                                {{ o.discount | currency:'THB':'symbol-narrow':'1.2-2' }}
+                                            <td class="text-right text-success">
+                                                -{{ o.discount | currency:'THB':'symbol-narrow':'1.2-2' }}
                                             </td>
                                         </tr>
                                         <tr>
@@ -166,7 +166,7 @@
                                                 ค่าขนส่ง
                                             </td>
                                             <td class="text-right">
-                                                {{ o.total - o.discount - amount | currency:'THB':'symbol-narrow':'1.2-2' }}
+                                                +{{ supply-amount | currency:'THB':'symbol-narrow':'1.2-2' }}
                                             </td>
                                         </tr>
                                         <tr class="bold">

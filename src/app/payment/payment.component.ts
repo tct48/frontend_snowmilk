@@ -9,6 +9,7 @@ import { AlertService } from '../share/alert.service';
 import { CategoryService } from '../share/service/category.service';
 import { OrderService } from '../share/service/order.service';
 import { PaymentService } from '../share/service/payment.service';
+import { PromotionService } from '../share/service/promotion.service';
 
 @Component({
   selector: 'app-payment',
@@ -25,6 +26,7 @@ export class PaymentComponent implements OnInit {
     private activateRouter: ActivatedRoute,
     private datePipe: DatePipe,
     private payment: PaymentService,
+    private promotion:PromotionService,
     private http: HttpClient,
     private router: Router
   ) {
@@ -40,6 +42,7 @@ export class PaymentComponent implements OnInit {
 
       this.loadCategory();
       this.initialForm();
+      this.getPromotion();
     })
   }
 
@@ -53,6 +56,19 @@ export class PaymentComponent implements OnInit {
     items: [],
     total_items: 0
   }
+  
+    
+  promote:any={
+    total_items:0,
+    items:[]
+  }
+  getPromotion(){
+    this.promotion.loadAllPromotion({sp:0,lp:4}).then(result=>{
+      this.promote = result;
+      console.log(this.promote)
+    })
+  }
+
 
   initialForm() {
     this.form = this.builder.group({

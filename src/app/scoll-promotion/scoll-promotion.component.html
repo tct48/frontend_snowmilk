@@ -25,7 +25,8 @@
 
 
   <!-- end banner -->
-  <div id="promotion" class="menu-main pad-top-100 pad-bottom-100 parallax" style="background:rgb(29, 29, 29)" #promotion>
+  <div id="promotion" class="menu-main pad-top-100 pad-bottom-100 parallax" style="background:rgb(29, 29, 29)"
+    #promotion>
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -72,41 +73,33 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-            <h2 class="block-title text-center">
-              ไอศกรีม 6 รสชาติที่ผู้คนสนใจ
-            </h2>
-            <p class="title-caption text-center">
-              เรารวบรวมมาไว้ให้แล้วไอศกรีม 6 รสชาติ ที่ฮอตปรอทแตกที่สุดในช่วงเวลานี้
-            </p>
-          </div>
           <div style="background-color:#686868!important;">
             <div class="col-md-6" style="margin-bottom: 15px;">
-              <a [routerLink]="'/product'" >
+              <a [routerLink]="'/product'">
                 <img tooltip="คลิก" placement="bottom" class="img-thumbnail"
                   src="http://www.dee-jung.com/snowmilk/frontend/assets/images/สั่งซื้อสินค้า-click.png" alt="">
               </a>
             </div>
             <div class="col-md-6" style="margin-bottom: 15px;">
-              <a [routerLink]="'/product'" >
+              <a [routerLink]="'/product'">
                 <img tooltip="คลิก" placement="bottom" class="img-thumbnail"
                   src="http://www.dee-jung.com/snowmilk/frontend/assets/images/overdose-click.png" alt="">
               </a>
             </div>
             <div class="col-md-6" style="margin-bottom: 15px;">
-              <a [routerLink]="'/product'" >
+              <a [routerLink]="'/product'">
                 <img tooltip="คลิก" placement="bottom" class="img-thumbnail"
                   src="http://www.dee-jung.com/snowmilk/frontend/assets/images/snowmilk-click.png" alt="">
               </a>
             </div>
             <div class="col-md-6" style="margin-bottom: 15px;">
-              <a [routerLink]="'/product'" >
+              <a [routerLink]="'/product'">
                 <img tooltip="คลิก" placement="bottom" class="img-thumbnail"
                   src="http://www.dee-jung.com/snowmilk/frontend/assets/images/tray-click.png" alt="">
               </a>
             </div>
             <div class="col-md-12" style="margin-bottom: 15px;">
-              <a [routerLink]="'/oem'" >
+              <a [routerLink]="'/oem'">
                 <img tooltip="คลิก" placement="bottom" class="img-thumbnail"
                   src="http://www.dee-jung.com/snowmilk/frontend/assets/images/ตัวแทน-click.png" alt="">
               </a>
@@ -120,34 +113,6 @@
     <!-- end container -->
   </div>
 
-
-
-
-  <div class="special-menu pad-top-100 parallax">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-            <h2 class="block-title color-white text-center"> ไอศกรีมขายดี </h2>
-            <h5 class="title-caption text-center"> อากาศร้อนขนาดนี้ต้องมีอะไรเย็น ๆ มาช่วยคลายร้อนหน่อยแล้ว Snowmilk
-            </h5>
-          </div>
-          <div class="row pad-bottom-100">
-            <div class="{{ best_seller.total_items==3?'col-md-4':best_seller.total_items==2?'col-md-6':'col-md-12' }}"
-              *ngFor="let data of best_seller.items;let i = index;">
-              <img src="{{ data.image }}" [routerLink]="'/product-detail'" [queryParams]="{id:data._id}"
-                [tooltip]="data.name" placement="bottom" class="product-best-seller" style="width: 100%;" alt="">
-            </div>
-          </div>
-          <!-- end special-box -->
-        </div>
-        <!-- end col -->
-      </div>
-      <!-- end row -->
-    </div>
-    <!-- end container -->
-  </div>
-
   <div id="about" class="about-main pad-top-100 pad-bottom-100" #about>
     <div class="container">
       <div class="row">
@@ -155,7 +120,8 @@
           <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
             <h2 class="block-title"> เกี่ยวกับเรา </h2>
             <h3>เริ่มต้นจาก...</h3>
-            <p class="text-justify"> สโนว์มิลค์ เจลาโต้ หรือ Snowmilk Gelato คือ โรงงานรับผลิตไอศกรีมพรีเมียมประเภทเจลาโต้
+            <p class="text-justify"> สโนว์มิลค์ เจลาโต้ หรือ Snowmilk Gelato คือ
+              โรงงานรับผลิตไอศกรีมพรีเมียมประเภทเจลาโต้
               หรือไอศกรีมเจลาโต้
               (Gelato) ที่ได้คุณภาพมาตรฐาน GMP. ได้รับการจดแจ้งจาก อย.เป็นที่เรียบร้อย ตั้งอยู่ในพื้นที่ จ.ปทุมธานี
               บริหารโดย คุณเอกวิทย์ ตันติสุนทโรดม ซึ่งดำรงตำแหน่ง กรรมการผู้จัดการ และเป็นผู้ก่อตั้ง บริษัท สโนว์มิลค์
@@ -180,12 +146,40 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
           <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
             <div class="about-images">
-              <img class="about-main" style="width: 410px;height:410px;object-fit: cover;"
-                src="./assets/images/bg3.png" alt="About Main Image">
+              <img class="about-main" style="width: 410px;height:410px;object-fit: cover;" src="./assets/images/bg3.png"
+                alt="About Main Image">
               <img class="about-inset" style="height: 160px;width:160px;background-color: white;"
                 src="./assets/images/logo.png" alt="About Inset Image">
             </div>
           </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- end container -->
+  </div>
+
+
+  <div id="promotion" class="menu-main pad-top-100 pad-bottom-100 parallax" style="background:rgb(29, 29, 29)">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+            <h2 class="block-title text-center">
+              สินค้าของเรา
+            </h2>
+          </div>
+          <div class="blog-box clearfix">
+            <div class="col-md-6" *ngFor="let data of p.items;">
+              <a [routerLink]="'/product-detail'" [queryParams]="{id:data._id}">
+                <img src="{{data.image}}" class="shadow33" style="width: 100%;" class="thumbnail"
+                  tooltip="สั่ง {{ data.name }} เลย" alt="">
+              </a>
+            </div>
+          </div>
+          <!-- end team-box -->
+
         </div>
         <!-- end col -->
       </div>

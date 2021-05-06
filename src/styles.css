@@ -9,7 +9,7 @@
 
 #shang-chi{
     position: fixed;
-    width: 180px;
+    width: fit-content;
     bottom: 15px;
     left: 15px;
     right: 0px;

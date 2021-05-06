@@ -16,6 +16,7 @@ export class OemComponent implements OnInit {
     private promotion:PromotionService
   ) { 
     this.initialForm();
+    window.scrollTo(0, 0);
   }
 
   ngOnInit(): void {

@@ -19,16 +19,19 @@ export class ProductComponent implements OnInit {
     private promotion: PromotionService,
     private activateRouter: ActivatedRoute,
   ) {
-    window.scrollTo(0, 0);
+    
     this.loadProduct(this.option);
     this.loadCate();
     this.cart = localStorage.getItem("cart");
     this.activateRouter.queryParams.forEach(params => {
       if (params.category) {
         this.option.category = params.category;
-        var el = document.getElementById(params.category);
-        el.scrollIntoView();
+        setTimeout(() => {
+          var el = document.getElementById(params.category);
+          el.scrollIntoView();
+        }, 500);
       } else {
+        window.scrollTo(0, 0);
         this.option.category = 1;
       }
     });
